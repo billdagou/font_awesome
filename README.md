@@ -13,15 +13,17 @@ First of all, you will need to load the library file.
 Or, use the ViewHelper in your Fluid template.
 
 	<html xmlns="http://www.w3.org/1999/xhtml" lang="en"
-		xmlns:fa="http://typo3.org/ns/Dagou/FontAwesome/ViewHelpers">
+		xmlns:fa="http://typo3.org/ns/Dagou/FontAwesome/ViewHelpers"
+		data-namespace-typo3-fluid="true">
 		<fa:load />
 	</html>
 
 Then, use ViewHelpers to add the icons in your Fluid template. Suppose you are using `fa` as its namespace.
 
 	<html xmlns="http://www.w3.org/1999/xhtml" lang="en"
-		xmlns:fa="http://typo3.org/ns/Dagou/FontAwesome/ViewHelpers">
-		......
+		xmlns:fa="http://typo3.org/ns/Dagou/FontAwesome/ViewHelpers"
+		data-namespace-typo3-fluid="true">
+		<fa:icon icon="flag" />
 	</html>
 
 #### LoadViewHelper
