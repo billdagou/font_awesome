@@ -47,7 +47,7 @@ class IconViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractTagBasedVi
 		$this->registerArgument('class', 'string', 'CSS class(es) for this element.');
 		$this->registerArgument('fixed-width', 'boolean', 'Whether the icon is fixed width or not.');
 		$this->registerArgument('flip', 'string', 'Horizontal or vertical.');
-		$this->registerArgument('icon', 'string', 'FontAwesome icon name.', TRUE);
+		$this->registerArgument('icon', 'string', 'FontAwesome icon name.');
 		$this->registerArgument('inverse', 'boolean', 'Whether the icon color is inversed or not. ONLY works for stack!!!');
 		$this->registerArgument('pull', 'string', 'Pull left or right.');
 		$this->registerArgument('rotate', 'string', '90, 180, or 270.');
@@ -61,7 +61,7 @@ class IconViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractTagBasedVi
 	public function render() {
 		$this->tag->forceClosingTag(TRUE);
 
-		$classes = ['fa', 'fa-'.$this->arguments['icon']];
+		$classes = ['fa', 'fa-'.$this->arguments['icon'] ?: $this->renderChildren()];
 
 		if ($this->viewHelperVariableContainer->exists(\Dagou\FontAwesome\ViewHelpers\ListViewHelper::class, 'list')) {
 			array_unshift($classes, 'fa-li');
