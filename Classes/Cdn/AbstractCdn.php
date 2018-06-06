@@ -27,7 +27,7 @@ abstract class AbstractCdn implements Cdn, SingletonInterface {
             } else {
                 foreach ($packages as $package) {
                     if ($this->isValidPackage($package)) {
-                        $this->loadPackage($package, $type);
+                        $this->loadPackage($package, $type, $footer);
                     }
                 }
 
