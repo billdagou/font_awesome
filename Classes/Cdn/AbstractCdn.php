@@ -45,9 +45,9 @@ abstract class AbstractCdn implements Cdn, SingletonInterface {
         switch ($type) {
             case 'js':
                 if ($footer) {
-                    $this->getPageRenderer()->addJsFooterLibrary('font_awesome', $this->getJs($package));
+                    $this->getPageRenderer()->addJsFooterLibrary('font_awesome-'.$package, $this->getJs($package));
                 } else {
-                    $this->getPageRenderer()->addJsLibrary('font_awesome', $this->getJs($package));
+                    $this->getPageRenderer()->addJsLibrary('font_awesome-'.$package, $this->getJs($package));
                 }
             break;
             case 'css':
