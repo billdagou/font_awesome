@@ -54,7 +54,7 @@ class LoadViewHelper extends AbstractViewHelper {
      */
     protected function getCdn(bool $isCustomized) {
         if ($isCustomized) {
-            return GeneralUtility::makeInstance(Customization::VERSION);
+            return GeneralUtility::makeInstance(Customization::class);
         }
 
         if (($cdnClassName =
