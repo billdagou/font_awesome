@@ -4,10 +4,13 @@ namespace Dagou\FontAwesome\ViewHelpers;
 use Dagou\FontAwesome\Cdn\Customization;
 use Dagou\FontAwesome\Cdn\Local;
 use Dagou\FontAwesome\Interfaces\Cdn;
+use Dagou\FontAwesome\Traits\ExtConf;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
 
 class LoadViewHelper extends AbstractViewHelper {
+    use ExtConf;
+
     public function initializeArguments() {
         $this->registerArgument('all', 'boolean', 'Load all packages.', FALSE, TRUE);
         $this->registerArgument('solid', 'boolean', 'Load solid package.');
@@ -54,7 +57,8 @@ class LoadViewHelper extends AbstractViewHelper {
             return GeneralUtility::makeInstance(Customization::VERSION);
         }
 
-        if (($cdnClassName = GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['font_awesome']['CDN'][$this->getExtConf()['cdn']])) {
+        if (($cdnClassName =
+            GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['font_awesome']['CDN'][$this->getExtConf()['cdn']])) {
             $cdn = GeneralUtility::makeInstance($cdnClassName);
 
             return $cdn instanceof Cdn ? $cdn : GeneralUtility::makeInstance(Local::class);
