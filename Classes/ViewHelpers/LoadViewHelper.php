@@ -19,8 +19,29 @@ class LoadViewHelper extends AbstractViewHelper {
     }
 
     public function render() {
-        print_r($this->arguments);
-        //$this->getCdn();
+        if (is_array($this->arguments['packages'])) {
+            $cdn = $this->getCdn(TRUE);
+
+            $cdn->load($this->arguments['packages'], $this->arguments['type'], $this->arguments['footer']);
+        } else {
+            $cdn = $this->getCdn(FALSE);
+
+            $packages = [];
+            if ($this->arguments['all']) {
+                $packages[] = 'all';
+            }
+            if ($this->arguments['solid']) {
+                $packages[] = 'solid';
+            }
+            if ($this->arguments['regular']) {
+                $packages[] = 'regular';
+            }
+            if ($this->arguments['brands']) {
+                $packages[] = 'brands';
+            }
+
+            $cdn->load($packages, $this->arguments['type'], $this->arguments['footer']);
+        }
     }
 
     /**
