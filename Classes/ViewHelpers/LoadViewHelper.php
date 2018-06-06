@@ -54,8 +54,7 @@ class LoadViewHelper extends AbstractViewHelper {
             return GeneralUtility::makeInstance(Customization::VERSION);
         }
 
-        if (($cdnClassName =
-            GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['font_awesome']['CDN'][$this->getExtConf()['cdn']])) {
+        if (($cdnClassName = GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['font_awesome']['CDN'][$this->getExtConf()['cdn']])) {
             $cdn = GeneralUtility::makeInstance($cdnClassName);
 
             return $cdn instanceof Cdn ? $cdn : GeneralUtility::makeInstance(Local::class);
