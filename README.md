@@ -41,9 +41,17 @@ To add new CDN source, please refer to `\Dagou\FontAwesome\Cdn\FontAwesome` and 
 - `pull` (string) Pulled icon, `left`, `right`.
 - `animation` (string) Animated icon, `spin`, `pulse`.
 - `rotate` (string) Rotated icon, `90`, `180`, `270`.
-- `flip` (string) Flipped icon, `horizontal`, `vertical`.
+- `flip` (string) Flipped icon, `h`, `v`.
 - `inverse` (boolean) Inversed color or not.
 - `largerIcon` (boolean) Stack larger icon or not. **Stack ONLY**
+- `grow` (float) Scale up. Default `0`. **JS library ONLY**
+- `shrink` (float) Scale down. Default `0`. **JS library ONLY**
+- `up` (float) Move up. Default `0`. **JS library ONLY**
+- `right` (float) Move right. Default `0`. **JS library ONLY**
+- `down` (float) Move down. Default `0`. **JS library ONLY**
+- `left` (float) Move left. Default `0`. **JS library ONLY**
+- `mask` (string) Mask icon name. **JS library ONLY**
+- `maskStyle` (string) Mask style. Default `solid`. **Mask ONLY**
 
 Basic Use
 
@@ -71,7 +79,11 @@ Rotated & Flipped Icons
 
     <fa:brand icon="font-awesome" />
     <fa:brand icon="font-awesome" rotate="90" />
-    <fa:brand icon="font-awesome" flip="horizontal" />
+    <fa:brand icon="font-awesome" flip="h" />
+
+Scaling
+
+    <fa:solid icon="magic" shrink="8" style="background:MistyRose" />
 
 Stacked Icons see below.
 

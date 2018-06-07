@@ -32,16 +32,17 @@ abstract class AbstractIconViewHelper extends AbstractTagBasedViewHelper {
         $this->registerArgument('rotate', 'string', 'Rotated icon.');
         $this->registerArgument('flip', 'string', 'Flipped icon.');
         $this->registerArgument('inverse', 'boolean', 'Inversed color or not.');
+
         $this->registerArgument('largerIcon', 'boolean', 'Stack larger icon or not.');
 
-        $this->registerArgument('grow', 'int', 'Scale up', FALSE, 0);
-        $this->registerArgument('shrink', 'int', 'Scale down', FALSE, 0);
-        $this->registerArgument('up', 'int', 'Move up', FALSE, 0);
-        $this->registerArgument('right', 'int', 'Move right', FALSE, 0);
-        $this->registerArgument('down', 'int', 'Move down', FALSE, 0);
-        $this->registerArgument('left', 'int', 'Move left', FALSE, 0);
-        $this->registerArgument('mask', 'string', 'Mask icon name');
-        $this->registerArgument('maskStyle', 'string', 'Mask style', FALSE, $this->defaultStyle);
+        $this->registerArgument('grow', 'int', 'Scale up.', FALSE, 0);
+        $this->registerArgument('shrink', 'int', 'Scale down.', FALSE, 0);
+        $this->registerArgument('up', 'int', 'Move up.', FALSE, 0);
+        $this->registerArgument('right', 'int', 'Move right.', FALSE, 0);
+        $this->registerArgument('down', 'int', 'Move down.', FALSE, 0);
+        $this->registerArgument('left', 'int', 'Move left.', FALSE, 0);
+        $this->registerArgument('mask', 'string', 'Mask icon name.');
+        $this->registerArgument('maskStyle', 'string', 'Mask style.', FALSE, $this->defaultStyle);
 
         $this->registerUniversalTagAttributes();
     }
@@ -145,8 +146,10 @@ abstract class AbstractIconViewHelper extends AbstractTagBasedViewHelper {
 
         $this->tag->addAttribute('class', implode(' ', $classes));
 
-        if (count($data) && $this->tag->getAttribute('data')) {
-            ArrayUtility::mergeRecursiveWithOverrule($data, $this->tag->getAttribute('data'));
+        if (count($data)) {
+            if ($this->tag->getAttribute('data')) {
+                ArrayUtility::mergeRecursiveWithOverrule($data, $this->tag->getAttribute('data'));
+            }
 
             $this->tag->addAttribute('data', $data);
         }
