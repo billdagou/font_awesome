@@ -6,10 +6,10 @@ trait Style {
      * @var array
      */
     protected static $styles = [
-        'solid',
-        'regular',
-        'light',
-        'brands',
+        'solid' => 'fas',
+        'regular' => 'far',
+        'light' => 'fal',
+        'brand' => 'fab',
     ];
     /**
      * @var string
@@ -22,6 +22,6 @@ trait Style {
      * @return bool
      */
     protected function isValidStyle(string $style) {
-        return in_array($style, self::$styles);
+        return in_array($style, array_keys(self::$styles));
     }
 }

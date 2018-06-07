@@ -1,6 +1,8 @@
 <?php
 namespace Dagou\FontAwesome\Traits;
 
+use Dagou\FontAwesome\ViewHelpers\LoadViewHelper;
+
 trait Rotate {
     /**
      * @var array
@@ -17,6 +19,10 @@ trait Rotate {
      * @return bool
      */
     protected function isValidRotate(string $rotate) {
+        if ($this->viewHelperVariableContainer->get(LoadViewHelper::class, 'library') === 'js') {
+            return is_numeric($rotate);
+        }
+
         return in_array($rotate, self::$rotates);
     }
 }
