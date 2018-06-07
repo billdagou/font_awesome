@@ -60,6 +60,8 @@ class LoadViewHelper extends AbstractViewHelper {
      * @param string $library
      */
     protected static function registerFontAwesomeLibrary(RenderingContextInterface $renderingContext, string $library) {
+        print_r(self::class.'.library');
+
         $renderingContext->getVariableProvider()->add(self::class.'.library', $library);
     }
 
