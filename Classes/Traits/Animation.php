@@ -16,6 +16,6 @@ trait Animation {
      * @return bool
      */
     protected function isValidAnimation(string $animation) {
-        return is_array($animation, self::$animations);
+        return in_array($animation, self::$animations);
     }
 }

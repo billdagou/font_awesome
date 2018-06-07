@@ -53,9 +53,22 @@ To add new CDN source, please refer to `\Dagou\FontAwesome\Cdn\FontAwesome` and 
 Basic Use
 
     <fa:solid icon="camera-retro" />
-    <fa:regular icon="camera-retro" />
-    <fa:light icon="camera-retro" />
-    <fa:brands icon="font-awesome" />
+    
+Icon Sizes
+
+    <fa:solid icon="camera-retro" size="xs" />
+    
+Fixed Width Icons
+
+    <div><fa:solid icon="home" fixedWidth="true" style="background:MistyRose" /> Home</div>
+    
+Bordered & Pulled Icons
+
+    <fa:solid icon="quote-left" size="2x" pull="left" border="true" />Gatsby believed in the green light, the orgastic future that year by year recedes before us. It eluded us then, but that’s no matter — tomorrow we will run faster, stretch our arms further... And one fine morning — So we beat on, boats against the current, borne back ceaselessly into the past.
+
+Animated Icons
+
+    <fa:solid icon="spinner" animation="spin" />
 
 #### ListViewHelper
 List icons wrapper.
