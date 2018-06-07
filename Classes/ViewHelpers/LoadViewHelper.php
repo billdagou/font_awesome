@@ -7,8 +7,8 @@ use Dagou\FontAwesome\Interfaces\Cdn;
 use Dagou\FontAwesome\Traits\ExtConf;
 use Dagou\FontAwesome\Traits\Library;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3Fluid\Fluid\Core\Rendering\RenderingContextInterface;
 use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
+use TYPO3Fluid\Fluid\Core\ViewHelper\ViewHelperVariableContainer;
 
 class LoadViewHelper extends AbstractViewHelper {
     use ExtConf, Library;
@@ -23,36 +23,44 @@ class LoadViewHelper extends AbstractViewHelper {
         $this->registerArgument('packages', 'array', 'Font Awesome packages.');
     }
 
-    public static function renderStatic(array $arguments, \Closure $renderChildrenClosure, RenderingContextInterface $renderingContext) {
-        if (!self::isValidLibrary($arguments['library'])) {
-            $arguments['library'] = self::$defaultLibrary;
+    public function render() {
+        if (!$this->isValidLibrary($this->arguments['library'])) {
+            $this->arguments['library'] = $this->defaultLibrary;
         }
 
-        $renderingContext->getVariableProvider()->add(LoadViewHelper::class, 'library', $arguments['library']);
+        self::registerFontAwesomeLibrary($this->viewHelperVariableContainer, $this->arguments['library']);
 
-        if (is_array($arguments['packages'])) {
-            $cdn = self::getCdn(TRUE);
+        if (is_array($this->arguments['packages'])) {
+            $cdn = $this->getCdn(TRUE);
 
-            $cdn->load($arguments['packages'], $arguments['library'], $arguments['footer']);
+            $cdn->load($this->arguments['packages'], $this->arguments['library'], $this->arguments['footer']);
         } else {
-            $cdn = self::getCdn(FALSE);
+            $cdn = $this->getCdn(FALSE);
 
             $packages = [];
-            if ($arguments['all']) {
+            if ($this->arguments['all']) {
                 $packages[] = 'all';
             }
-            if ($arguments['solid']) {
+            if ($this->arguments['solid']) {
                 $packages[] = 'solid';
             }
-            if ($arguments['regular']) {
+            if ($this->arguments['regular']) {
                 $packages[] = 'regular';
             }
-            if ($arguments['brands']) {
+            if ($this->arguments['brands']) {
                 $packages[] = 'brands';
             }
 
-            $cdn->load($packages, $arguments['library'], $arguments['footer']);
+            $cdn->load($packages, $this->arguments['library'], $this->arguments['footer']);
         }
+    }
+
+    /**
+     * @param \TYPO3Fluid\Fluid\Core\ViewHelper\ViewHelperVariableContainer $viewHelperVariableContainer
+     * @param string $library
+     */
+    protected static function registerFontAwesomeLibrary(ViewHelperVariableContainer $viewHelperVariableContainer, string $library) {
+        $viewHelperVariableContainer->add(self::class, 'library', $library);
     }
 
     /**
@@ -60,7 +68,7 @@ class LoadViewHelper extends AbstractViewHelper {
      *
      * @return \Dagou\FontAwesome\Interfaces\Cdn
      */
-    protected static function getCdn(bool $isCustomized) {
+    protected function getCdn(bool $isCustomized) {
         if ($isCustomized) {
             return GeneralUtility::makeInstance(Customization::class);
         }

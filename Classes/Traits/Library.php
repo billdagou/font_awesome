@@ -5,21 +5,21 @@ trait Library {
     /**
      * @var array
      */
-    protected static $libraries = [
+    protected static $types = [
         'js',
         'css',
     ];
     /**
      * @var string
      */
-    protected static $defaultLibrary = 'js';
+    protected $defaultType = 'js';
 
     /**
-     * @param string $library
+     * @param string $type
      *
      * @return bool
      */
-    protected static function isValidLibrary(string $library) {
-        return in_array($library, self::$libraries);
+    protected function isValidType(string $type) {
+        return in_array($type, self::$types);
     }
 }
