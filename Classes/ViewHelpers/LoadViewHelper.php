@@ -7,8 +7,8 @@ use Dagou\FontAwesome\Interfaces\Cdn;
 use Dagou\FontAwesome\Traits\ExtConf;
 use Dagou\FontAwesome\Traits\Library;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3Fluid\Fluid\Core\Rendering\RenderingContextInterface;
 use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
-use TYPO3Fluid\Fluid\Core\ViewHelper\ViewHelperVariableContainer;
 
 class LoadViewHelper extends AbstractViewHelper {
     use ExtConf, Library;
@@ -28,7 +28,7 @@ class LoadViewHelper extends AbstractViewHelper {
             $this->arguments['library'] = $this->defaultLibrary;
         }
 
-        self::registerFontAwesomeLibrary($this->viewHelperVariableContainer, $this->arguments['library']);
+        self::registerFontAwesomeLibrary($this->renderingContext, $this->arguments['library']);
 
         if (is_array($this->arguments['packages'])) {
             $cdn = $this->getCdn(TRUE);
@@ -56,11 +56,11 @@ class LoadViewHelper extends AbstractViewHelper {
     }
 
     /**
-     * @param \TYPO3Fluid\Fluid\Core\ViewHelper\ViewHelperVariableContainer $viewHelperVariableContainer
+     * @param \TYPO3Fluid\Fluid\Core\Rendering\RenderingContextInterface $renderingContext
      * @param string $library
      */
-    protected static function registerFontAwesomeLibrary(ViewHelperVariableContainer $viewHelperVariableContainer, string $library) {
-        $viewHelperVariableContainer->add(self::class, 'library', $library);
+    protected static function registerFontAwesomeLibrary(RenderingContextInterface $renderingContext, string $library) {
+        $renderingContext->getVariableProvider()->add(self::class.'.library', $library);
     }
 
     /**
