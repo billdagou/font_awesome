@@ -64,8 +64,6 @@ Icon Sizes
 Fixed Width Icons
 
     <div><fa:solid icon="home" fixedWidth="true" style="background:MistyRose" /> Home</div>
-
-List Icons see below
     
 Bordered & Pulled Icons
 
@@ -85,7 +83,18 @@ Scaling
 
     <fa:solid icon="magic" shrink="8" style="background:MistyRose" />
 
-Stacked Icons see below.
+Positioning
+
+    <fa:solid icon="magic" shrink="8" up="6" style="background:MistyRose" />
+
+Rotating & Flipping
+
+    <fa:solid icon="magic" rotate="90" style="background:MistyRose" />
+    <fa:solid icon="magic" flip="v" style="background:MistyRose" />
+
+Masking
+
+    <fa:solid icon="pencil-alt" shrink="10" up=".5" mask="comment" maskStyle="solid" style="background:MistyRose" />
 
 #### List
 - `size` (string) Icon size, `xs`, `sm`, `lg`, `2x`, `3x`, `4x`, `5x`, `6x`, `7x`, `8x`, `9x`, `10x`.

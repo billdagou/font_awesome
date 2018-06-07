@@ -99,7 +99,7 @@ abstract class AbstractIconViewHelper extends AbstractTagBasedViewHelper {
                 $transform['rotate'] = $this->arguments['rotate'];
             }
 
-            if ($this->arguments['flip'] && $this->isValidRotate($this->arguments['flip'])) {
+            if ($this->arguments['flip'] && $this->isValidFlip($this->arguments['flip'])) {
                 $transform['flip'] = $this->arguments['flip'];
             }
 
