@@ -1,16 +1,12 @@
 # TYPO3 Extension: Font Awesome
-EXT:font_awesome allows you to add [Font Awesome](http://fontawesome.io/) icons in your Fluid templates by using ViewHelpers.
+EXT:font_awesome allows you to use [Font Awesome](https://fontawesome.com/) in your extensions.
 
 You can easily choose using CDN or local Font Awesome library.
 
 **The extension version only matches Font Awesome library version, doesn't mean anything else.**
 
 ## How to use it
-First of all, you will need to load the library file.
-
-	\Dagou\FontAwesome\Utility\FontAwesomeUtility::loadFontAwesome();
-
-Or, use the ViewHelper in your Fluid template.
+You can load the library in your Fluid template with **LoadViewHelper**.
 
 	<html xmlns="http://www.w3.org/1999/xhtml" lang="en"
 		xmlns:fa="http://typo3.org/ns/Dagou/FontAwesome/ViewHelpers"
@@ -18,85 +14,105 @@ Or, use the ViewHelper in your Fluid template.
 		<fa:load />
 	</html>
 
-Then, use ViewHelpers to add the icons in your Fluid template. Suppose you are using `fa` as its namespace.
+Or only some specific style packages, like `solid`, `regular`, or `brands`. Default `all`.
 
-	<html xmlns="http://www.w3.org/1999/xhtml" lang="en"
-		xmlns:fa="http://typo3.org/ns/Dagou/FontAwesome/ViewHelpers"
-		data-namespace-typo3-fluid="true">
-		<fa:icon icon="flag" />
-	</html>
+    <fa:load all="false" solid="true" regular="true" brands="true" />
 
-#### LoadViewHelper
-The ViewHelper you need to load Font Awesome library in your Fluid template.
+And decide which library you want to load, `js` or `css`. Default `js`.
 
-	<fa:load />
+    <fa:load library="css" /> 
 
-#### IconViewHelper
-The main ViewHelper you may need in this extension.
+You can also load your own library or packages.
 
-	<fa:icon icon="flag" />
+    <fa:load packages="{...}" />
+    
+Or, load the JS before the &lt;BODY&gt; tag.
 
-Allowed attributes:
+    <fa:load footer="false" />
 
-- `icon` (string)
-Icon name, **required**. You can find all the icon names at the [icons page](http://fontawesome.io/icons/).
+To add new CDN source, please refer to `\Dagou\FontAwesome\Cdn\FontAwesome` and update `$GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['font_awesome']['CDN']` accordingly.  
 
-- `size` (string)
-Icon size relative to its container. Allowed value: `lg`, `2x`, `3x`, `4x`, `5x`.
+## ViewHelper
+#### Icon (Solid, Regular, Light, Brand)
+- `icon` (string) [Icon name](https://fontawesome.com/icons). **Required**
+- `size` (string) Icon size, `xs`, `sm`, `lg`, `2x`, `3x`, `4x`, `5x`, `6x`, `7x`, `8x`, `9x`, `10x`.
+- `fixedWidth` (boolean) Fixed width or not.
+- `border` (boolean) Bordered or not.
+- `pull` (string) Pulled icon, `left`, `right`.
+- `animation` (string) Animated icon, `spin`, `pulse`.
+- `rotate` (string) Rotated icon, `90`, `180`, `270`.
+- `flip` (string) Flipped icon, `h`, `v`.
+- `inverse` (boolean) Inversed color or not.
+- `largerIcon` (boolean) Stack larger icon or not. **Stack ONLY**
+- `grow` (float) Scale up. Default `0`. **JS library ONLY**
+- `shrink` (float) Scale down. Default `0`. **JS library ONLY**
+- `up` (float) Move up. Default `0`. **JS library ONLY**
+- `right` (float) Move right. Default `0`. **JS library ONLY**
+- `down` (float) Move down. Default `0`. **JS library ONLY**
+- `left` (float) Move left. Default `0`. **JS library ONLY**
+- `mask` (string) Mask icon name. **JS library ONLY**
+- `maskStyle` (string) Mask style. Default `solid`. **Mask ONLY**
 
-- `fixed-width` (boolean)
-Set the icon at a fixed width.
+Basic Use
 
-- `border` (boolean)
-Set a border on the icon, generally used with `pull`.
+    <fa:solid icon="camera-retro" />
 
-- `pull` (string)
-Pull the icon, generally used with `border`. Allowed value: `left`, `right`.
+Icon Sizes
 
-- `animation` (string)
-Set the icon animated. Allowed value: `spin`, `pulse`.
+    <fa:solid icon="camera-retro" size="xs" />
 
-- `flip` (string)
-Flip the icon, conflict with `rotate`. Allowed value: `horizontal`, `vertical`.
+Fixed Width Icons
 
-- `rotate` (string)
-Rotate the icon, conflict with `flip`. Allowed value: `90`, `180`, `270`.
+    <div><fa:solid icon="home" fixedWidth="true" style="background:MistyRose" /> Home</div>
+    
+Bordered & Pulled Icons
 
-- `class` (string)
-Other class(es) you need for the icon.
+    <fa:solid icon="quote-left" size="2x" pull="left" border="true" />Gatsby believed in the green light, the orgastic future that year by year recedes before us. It eluded us then, but that’s no matter — tomorrow we will run faster, stretch our arms further... And one fine morning — So we beat on, boats against the current, borne back ceaselessly into the past.
 
-- `stack-size` (boolean)
-Icon size in stack. **Only works for StackViewHelper.**
+Animated Icons
 
-- `inverse` (boolean)
-Inverse the icon color. **Only works for StackViewHelper.**
+    <fa:solid icon="spinner" animation="spin" />
 
-#### ListViewHelper
-List icons wrapper.
+Rotated & Flipped Icons
 
-	<fa:list>
-		<li><fa:icon icon="check-square" />List icons</li>
-	</fa:list>
+    <fa:brand icon="font-awesome" />
+    <fa:brand icon="font-awesome" rotate="90" />
+    <fa:brand icon="font-awesome" flip="h" />
 
-Allowed attributes:
+Scaling
 
-- `class` (string)
-Other class(es) you need for the list.
+    <fa:solid icon="magic" shrink="8" style="background:MistyRose" />
 
-#### StackViewHelper
-Stacked icons wrapper.
+Positioning
 
-	<fa:stack>
-		<fa:icon icon="square-o" stack-size="2x" />
-		<fa:icon icon="twitter" stack-size="1x" />
-	</fa:stack>
+    <fa:solid icon="magic" shrink="8" up="6" style="background:MistyRose" />
 
-Allowed attributes:
+Rotating & Flipping
 
-- `class` (string)
-Other class(es) you need for the stack.
+    <fa:solid icon="magic" rotate="90" style="background:MistyRose" />
+    <fa:solid icon="magic" flip="v" style="background:MistyRose" />
 
-## How to maintain the CDN resources
-To replace or add new CDN resources, please update $GLOBALS\['TYPO3\_CONF\_VARS'\]\['EXTCONF'\]\['font_awesome'\]\['CDN'\] in your own extension.
+Masking
 
-	$GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['font_awesome']['CDN']['New_CDN_Name'] = '...';
+    <fa:solid icon="pencil-alt" shrink="10" up=".5" mask="comment" maskStyle="solid" style="background:MistyRose" />
+
+#### List
+- `size` (string) Icon size, `xs`, `sm`, `lg`, `2x`, `3x`, `4x`, `5x`, `6x`, `7x`, `8x`, `9x`, `10x`.
+
+
+    <fa:list>
+        <li><fa:solid icon="check-square" />List icons can</li>
+    </fa:list>
+
+#### Stack
+- `size` (string) Icon size, `xs`, `sm`, `lg`, `2x`, `3x`, `4x`, `5x`, `6x`, `7x`, `8x`, `9x`, `10x`.
+- `pull` (string) Pulled icon, `left`, `right`.
+- `animation` (string) Animated icon, `spin`, `pulse`.
+- `rotate` (string) Rotated icon, `90`, `180`, `270`.
+- `flip` (string) Flipped icon, `horizontal`, `vertical`.
+
+
+    <fa:stack>
+        <fa:solid icon="square" largerIcon="true" />
+        <fa:solid icon="twitter" inverse="true" />
+    </fa:stack>
