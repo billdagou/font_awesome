@@ -34,6 +34,7 @@ abstract class AbstractIconViewHelper extends AbstractTagBasedViewHelper {
 
         $this->registerArgument('largerIcon', 'boolean', 'Stack larger icon or not.');
 print_r('initialize'.LF);
+print_r(get_class($this).LF);
         switch ($this->viewHelperVariableContainer->get(LoadViewHelper::class, 'library')) {
             case 'css':
             break;
