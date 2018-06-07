@@ -1,7 +1,7 @@
 <?php
 namespace Dagou\FontAwesome\ViewHelpers;
 
-class BrandsViewHelper extends AbstractIconViewHelper {
+class BrandViewHelper extends AbstractIconViewHelper {
     /**
      * @var string
      */

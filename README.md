@@ -37,7 +37,7 @@ To add new CDN source, please refer to `\Dagou\FontAwesome\Cdn\FontAwesome` and 
 
 ## ViewHelper
 
-#### Icon (Solid, Regular, Light, Brands)
+#### Icon (Solid, Regular, Light, Brand)
 
 - `icon` (string) Icon name. **Required**
 - `size` (string) Icon size, `xs`, `sm`, `lg`, `2x`, `3x`, `4x`, `5x`, `6x`, `7x`, `8x`, `9x`, `10x`.
@@ -69,6 +69,12 @@ Bordered & Pulled Icons
 Animated Icons
 
     <fa:solid icon="spinner" animation="spin" />
+    
+Rotated & Flipped Icons
+
+    <fa:brand icon="font-awesome" />
+    <fa:brand icon="font-awesome" rotate="90" />
+    <fa:brand icon="font-awesome" flip="horizontal" />
 
 #### ListViewHelper
 List icons wrapper.
