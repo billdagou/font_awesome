@@ -31,15 +31,8 @@ abstract class AbstractIconViewHelper extends AbstractTagBasedViewHelper {
         $this->registerArgument('rotate', 'string', 'Rotated icon.');
         $this->registerArgument('flip', 'string', 'Flipped icon.');
         $this->registerArgument('inverse', 'boolean', 'Inversed color or not.');
-print_r('------'.LF);
-print_r($this->renderingContext->getVariableProvider()->get(LoadViewHelper::class.'.library').LF);
-        switch ($this->renderingContext->getVariableProvider()->get(LoadViewHelper::class.'.library')) {
-            case 'css':
-                $this->registerArgument('largerIcon', 'boolean', 'Stack larger icon or not.');
-            break;
-            case 'js':
-            break;
-        }
+
+        $this->registerArgument('largerIcon', 'boolean', 'Stack larger icon or not.');
 
         $this->registerUniversalTagAttributes();
     }

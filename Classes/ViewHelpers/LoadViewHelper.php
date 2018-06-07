@@ -28,7 +28,7 @@ class LoadViewHelper extends AbstractViewHelper {
             $this->arguments['library'] = $this->defaultLibrary;
         }
 
-        self::registerFontAwesomeLibrary($this->renderingContext, $this->arguments['library']);
+        $this->viewHelperVariableContainer->add(LoadViewHelper::class, 'library', $this->arguments['library']);
 
         if (is_array($this->arguments['packages'])) {
             $cdn = $this->getCdn(TRUE);
@@ -53,16 +53,6 @@ class LoadViewHelper extends AbstractViewHelper {
 
             $cdn->load($packages, $this->arguments['library'], $this->arguments['footer']);
         }
-    }
-
-    /**
-     * @param \TYPO3Fluid\Fluid\Core\Rendering\RenderingContextInterface $renderingContext
-     * @param string $library
-     */
-    protected static function registerFontAwesomeLibrary(RenderingContextInterface $renderingContext, string $library) {
-        print_r($library.LF);
-        $renderingContext->getVariableProvider()->add(self::class.'.library', $library);
-        print_r($renderingContext->getVariableProvider()->get(self::class.'.library'));
     }
 
     /**
