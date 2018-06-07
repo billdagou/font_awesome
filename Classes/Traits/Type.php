@@ -9,6 +9,10 @@ trait Type {
         'js',
         'css',
     ];
+    /**
+     * @var string
+     */
+    protected $defaultType = 'js';
 
     /**
      * @param string $type

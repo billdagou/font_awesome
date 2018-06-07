@@ -8,10 +8,6 @@ class Customization extends AbstractCdn {
 
     public function load(array $packages = [], string $type = 'js', bool $footer = TRUE) {
         if (count($packages)) {
-            if (!$this->isValidType($type)) {
-                $type = 'js';
-            }
-
             foreach ($packages as $package) {
                 $this->loadPackage($package, $type, $footer);
             }

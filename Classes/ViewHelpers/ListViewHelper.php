@@ -1,36 +1,50 @@
 <?php
 namespace Dagou\FontAwesome\ViewHelpers;
 
-class ListViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractTagBasedViewHelper {
-	/**
-	 * @var string
-	 */
-	protected $tagName = 'ul';
+use Dagou\FontAwesome\Traits\Size;
+use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractTagBasedViewHelper;
 
-	/**
-	 * {@inheritDoc}
-	 * @see \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper::initializeArguments()
-	 */
-	public function initializeArguments() {
-		$this->registerArgument('class', 'string', 'CSS class(es) for this element.');
-	}
+class ListViewHelper extends AbstractTagBasedViewHelper {
+    use Size;
+    /**
+     * @var string
+     */
+    protected $tagName = 'ul';
 
-	/**
-	 * @return string
-	 */
-	public function render() {
-		$this->tag->addAttribute('class', 'fa-ul'.($this->arguments['class'] ? ' '.$this->arguments['class'] : ''));
+    public function initializeArguments() {
+        parent::initializeArguments();
+        $this->registerArgument('size', 'string', 'Icon size.');
+        $this->registerUniversalTagAttributes();
+    }
 
-		$this->viewHelperVariableContainer->add(\Dagou\FontAwesome\ViewHelpers\ListViewHelper::class, 'list', TRUE);
+    /**
+     * @return string
+     */
+    public function render() {
+        $this->viewHelperVariableContainer->add(ListViewHelper::class, 'isList', TRUE);
 
-		if (($content = $this->renderChildren())) {
-			$this->tag->setContent($content);
-		}
+        $content = $this->renderChildren();
 
-		$this->viewHelperVariableContainer->remove(\Dagou\FontAwesome\ViewHelpers\ListViewHelper::class, 'list');
+        $this->viewHelperVariableContainer->remove(ListViewHelper::class, 'isList');
 
-		if ($content) {
-			return $this->tag->render();
-		}
-	}
+        if ($content) {
+            $classes = [
+                'fa-ul',
+            ];
+
+            if ($this->arguments['size'] && $this->isValidSize($this->arguments['size'])) {
+                $classes[] = 'fa-'.$this->arguments['size'];
+            }
+
+            if ($this->tag->getAttribute('class')) {
+                $classes[] = $this->tag->getAttribute('class');
+            }
+
+            $this->tag->addAttribute('class', implode(' ', $classes));
+
+            $this->tag->setContent($content);
+
+            return $this->tag->render();
+        }
+    }
 }

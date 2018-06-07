@@ -18,10 +18,6 @@ abstract class AbstractCdn implements Cdn, SingletonInterface {
      */
     public function load(array $packages = [], string $type = 'js', bool $footer = TRUE) {
         if (count($packages)) {
-            if (!$this->isValidType($type)) {
-                $type = 'js';
-            }
-
             if (in_array('all', $packages)) {
                 $this->loadPackage('all', $type, $footer);
             } else {

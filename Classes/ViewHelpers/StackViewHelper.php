@@ -1,54 +1,72 @@
 <?php
 namespace Dagou\FontAwesome\ViewHelpers;
 
-class StackViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractTagBasedViewHelper {
-	/**
-	 * @var array
-	 */
-	protected $size = ['lg', '2x', '3x', '4x', '5x'];
+use Dagou\FontAwesome\Traits\Animation;
+use Dagou\FontAwesome\Traits\Flip;
+use Dagou\FontAwesome\Traits\Pull;
+use Dagou\FontAwesome\Traits\Rotate;
+use Dagou\FontAwesome\Traits\Size;
+use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractTagBasedViewHelper;
 
-	/**
-	 * @var string
-	 */
-	protected $tagName = 'span';
+class StackViewHelper extends AbstractTagBasedViewHelper {
+    use Animation, Flip, Pull, Rotate, Size;
+    /**
+     * @var string
+     */
+    protected $tagName = 'span';
 
-	/**
-	 * {@inheritDoc}
-	 * @see \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper::initializeArguments()
-	 */
-	public function initializeArguments() {
-		$this->registerArgument('class', 'string', 'CSS class(es) for this element.');
-		$this->registerArgument('size', 'string', 'Stack size.');
-	}
+    public function initializeArguments() {
+        parent::initializeArguments();
+        $this->registerArgument('size', 'string', 'Icon size.');
+        $this->registerArgument('pull', 'string', 'Pull left or right.');
+        $this->registerArgument('animation', 'string', 'Spin or pulse.');
+        $this->registerArgument('rotate', 'string', 'Rotate 90, 180, or 270.');
+        $this->registerArgument('flip', 'string', 'Flip horizontal or vertical.');
+        $this->registerUniversalTagAttributes();
+    }
 
-	/**
-	 * @return string
-	 */
-	public function render() {
-		$classes = ['fa-stack'];
+    /**
+     * @return string
+     */
+    public function render() {
+        $this->viewHelperVariableContainer->add(StackViewHelper::class, 'isStack', TRUE);
 
-		if ($this->arguments['size'] && in_array($this->arguments['size'], $this->size)) {
-			$classes[] = 'fa-'.$this->arguments['size'];
-		} else {
-			$classes[] = 'fa-lg';
-		}
+        $content = $this->renderChildren();
 
-		if ($this->arguments['class']) {
-			$classes[] = $this->arguments['class'];
-		}
+        $this->viewHelperVariableContainer->remove(StackViewHelper::class, 'isStack');
 
-		$this->tag->addAttribute('class', implode(' ', $classes));
+        if ($content) {
+            $classes = [
+                'fa-stack',
+            ];
 
-		$this->viewHelperVariableContainer->add(\Dagou\FontAwesome\ViewHelpers\StackViewHelper::class, 'stack', TRUE);
+            if ($this->arguments['size'] && $this->isValidSize($this->arguments['size'])) {
+                $classes[] = 'fa-'.$this->arguments['size'];
+            }
 
-		if (($content = $this->renderChildren())) {
-			$this->tag->setContent($content);
-		}
+            if ($this->arguments['pull'] && $this->isValidPull($this->arguments['pull'])) {
+                $classes[] = 'fa-pull-'.$this->arguments['pull'];
+            }
 
-		$this->viewHelperVariableContainer->remove(\Dagou\FontAwesome\ViewHelpers\StackViewHelper::class, 'stack');
+            if ($this->arguments['animation'] && $this->isValidAnimation($this->arguments['animation'])) {
+                $classes[] = 'fa-'.$this->arguments['animation'];
+            }
 
-		if ($content) {
-			return $this->tag->render();
-		}
-	}
+            if ($this->arguments['flip'] && $this->isValidFlip($this->arguments['flip'])) {
+                $classes[] = 'fa-flip-'.$this->arguments['flip'];
+            } elseif ($this->arguments['rotate'] && $this->isValidRotate($this->arguments['rotate'])) {
+                $classes[] = 'fa-rotate-'.$this->arguments['rotate'];
+            }
+
+            if ($this->tag->getAttribute('class')) {
+                $classes[] = $this->tag->getAttribute('class');
+            }
+
+            $this->tag->addAttribute('class', implode(' ', $classes));
+
+            $this->tag->setContent($content);
+
+            return $this->tag->render();
+        }
+    }
 }
