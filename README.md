@@ -1,16 +1,12 @@
 # TYPO3 Extension: Font Awesome
-EXT:font_awesome allows you to add [Font Awesome](http://fontawesome.io/) icons in your Fluid templates by using ViewHelpers.
+EXT:font_awesome allows you to use [Font Awesome](https://fontawesome.com/) in your extensions.
 
 You can easily choose using CDN or local Font Awesome library.
 
 **The extension version only matches Font Awesome library version, doesn't mean anything else.**
 
 ## How to use it
-First of all, you will need to load the library file.
-
-	\Dagou\FontAwesome\Utility\FontAwesomeUtility::loadFontAwesome();
-
-Or, use the ViewHelper in your Fluid template.
+You can load the library in your Fluid template with **LoadViewHelper**.
 
 	<html xmlns="http://www.w3.org/1999/xhtml" lang="en"
 		xmlns:fa="http://typo3.org/ns/Dagou/FontAwesome/ViewHelpers"
@@ -18,58 +14,48 @@ Or, use the ViewHelper in your Fluid template.
 		<fa:load />
 	</html>
 
-Then, use ViewHelpers to add the icons in your Fluid template. Suppose you are using `fa` as its namespace.
+Or only some specific style packages, like `solid`, `regular`, or `brands`. Default `all`.
 
-	<html xmlns="http://www.w3.org/1999/xhtml" lang="en"
-		xmlns:fa="http://typo3.org/ns/Dagou/FontAwesome/ViewHelpers"
-		data-namespace-typo3-fluid="true">
-		<fa:icon icon="flag" />
-	</html>
+    <fa:load all="false" solid="true" regular="true" brands="true" />
 
-#### LoadViewHelper
-The ViewHelper you need to load Font Awesome library in your Fluid template.
+And decide which library you want to load, `js` or `css`. Default `js`.
 
-	<fa:load />
+    <fa:load library="css" /> 
 
-#### IconViewHelper
-The main ViewHelper you may need in this extension.
+You can also load your own library or packages.
 
-	<fa:icon icon="flag" />
+    <fa:load packages="{...}" />
+    
+Or, load the JS before the &lt;BODY&gt; tag.
 
-Allowed attributes:
+    <fa:load footer="false" />
+    
+To add new CDN source, please refer to `\Dagou\FontAwesome\Cdn\FontAwesome` and update `$GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['font_awesome']['CDN']` accordingly.  
 
-- `icon` (string)
-Icon name, **required**. You can find all the icon names at the [icons page](http://fontawesome.io/icons/).
+([SVG with JavaScript](https://fontawesome.com/how-to-use/svg-with-js)) 
+([Web Fonts with CSS](https://fontawesome.com/how-to-use/web-fonts-with-css))
 
-- `size` (string)
-Icon size relative to its container. Allowed value: `lg`, `2x`, `3x`, `4x`, `5x`.
+## ViewHelper
 
-- `fixed-width` (boolean)
-Set the icon at a fixed width.
+#### Icon (Solid, Regular, Light, Brands)
 
-- `border` (boolean)
-Set a border on the icon, generally used with `pull`.
+- `icon` (string) Icon name. **Required**
+- `size` (string) Icon size, `xs`, `sm`, `lg`, `2x`, `3x`, `4x`, `5x`, `6x`, `7x`, `8x`, `9x`, `10x`.
+- `fixedWidth` (boolean) Fixed width or not.
+- `border` (boolean) Bordered or not.
+- `pull` (string) Pulled icon, `left`, `right`.
+- `animation` (string) Animated icon, `spin`, `pulse`.
+- `rotate` (string) Rotated icon, `90`, `180`, `270`.
+- `flip` (string) Flipped icon, `horizontal`, `vertical`.
+- `inverse` (boolean) Inversed color or not.
+- `largerIcon` (boolean) Stack larger icon or not. **Stack ONLY**
 
-- `pull` (string)
-Pull the icon, generally used with `border`. Allowed value: `left`, `right`.
+Basic Use
 
-- `animation` (string)
-Set the icon animated. Allowed value: `spin`, `pulse`.
-
-- `flip` (string)
-Flip the icon, conflict with `rotate`. Allowed value: `horizontal`, `vertical`.
-
-- `rotate` (string)
-Rotate the icon, conflict with `flip`. Allowed value: `90`, `180`, `270`.
-
-- `class` (string)
-Other class(es) you need for the icon.
-
-- `stack-size` (boolean)
-Icon size in stack. **Only works for StackViewHelper.**
-
-- `inverse` (boolean)
-Inverse the icon color. **Only works for StackViewHelper.**
+    <fa:solid icon="camera-retro" />
+    <fa:regular icon="camera-retro" />
+    <fa:light icon="camera-retro" />
+    <fa:brands icon="font-awesome" />
 
 #### ListViewHelper
 List icons wrapper.

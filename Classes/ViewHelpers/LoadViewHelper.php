@@ -5,34 +5,34 @@ use Dagou\FontAwesome\Cdn\Customization;
 use Dagou\FontAwesome\Cdn\Local;
 use Dagou\FontAwesome\Interfaces\Cdn;
 use Dagou\FontAwesome\Traits\ExtConf;
-use Dagou\FontAwesome\Traits\Type;
+use Dagou\FontAwesome\Traits\Library;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
 
 class LoadViewHelper extends AbstractViewHelper {
-    use ExtConf, Type;
+    use ExtConf, Library;
 
     public function initializeArguments() {
         $this->registerArgument('all', 'boolean', 'Load all packages or not.', FALSE, TRUE);
         $this->registerArgument('solid', 'boolean', 'Load solid package or not.');
         $this->registerArgument('regular', 'boolean', 'Load regular package or not.');
         $this->registerArgument('brands', 'boolean', 'Load brands package or not.');
-        $this->registerArgument('type', 'string', 'Package type.', FALSE, 'js');
+        $this->registerArgument('library', 'string', 'Library type.', FALSE, 'js');
         $this->registerArgument('footer', 'boolean', 'Add to footer or not.', FALSE, TRUE);
         $this->registerArgument('packages', 'array', 'Font Awesome packages.');
     }
 
     public function render() {
-        if (!$this->isValidType($this->arguments['type'])) {
-            $this->arguments['type'] = $this->defaultType;
+        if (!$this->isValidLibrary($this->arguments['library'])) {
+            $this->arguments['library'] = $this->defaultLibrary;
         }
 
-        $this->viewHelperVariableContainer->add(LoadViewHelper::class, 'type', $this->arguments['type']);
+        $this->viewHelperVariableContainer->add(LoadViewHelper::class, 'library', $this->arguments['library']);
 
         if (is_array($this->arguments['packages'])) {
             $cdn = $this->getCdn(TRUE);
 
-            $cdn->load($this->arguments['packages'], $this->arguments['type'], $this->arguments['footer']);
+            $cdn->load($this->arguments['packages'], $this->arguments['library'], $this->arguments['footer']);
         } else {
             $cdn = $this->getCdn(FALSE);
 
@@ -50,7 +50,7 @@ class LoadViewHelper extends AbstractViewHelper {
                 $packages[] = 'brands';
             }
 
-            $cdn->load($packages, $this->arguments['type'], $this->arguments['footer']);
+            $cdn->load($packages, $this->arguments['library'], $this->arguments['footer']);
         }
     }
 

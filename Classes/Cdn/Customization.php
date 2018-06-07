@@ -6,10 +6,15 @@ use Dagou\FontAwesome\Traits\Asset;
 class Customization extends AbstractCdn {
     use Asset;
 
-    public function load(array $packages = [], string $type = 'js', bool $footer = TRUE) {
+    /**
+     * @param array $packages
+     * @param string $library
+     * @param bool $footer
+     */
+    public function load(array $packages = [], string $library = 'js', bool $footer = TRUE) {
         if (count($packages)) {
             foreach ($packages as $package) {
-                $this->loadPackage($package, $type, $footer);
+                $this->loadPackage($package, $library, $footer);
             }
         }
     }

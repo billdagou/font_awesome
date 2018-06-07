@@ -6,8 +6,8 @@ interface Cdn {
 
     /**
      * @param array $packages
-     * @param string $type
+     * @param string $library
      * @param bool $footer
      */
-    public function load(array $packages = [], string $type = 'js', bool $footer = TRUE);
+    public function load(array $packages = [], string $library = 'js', bool $footer = TRUE);
 }

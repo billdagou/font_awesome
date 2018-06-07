@@ -5,40 +5,40 @@ use Dagou\FontAwesome\Interfaces\Cdn;
 use Dagou\FontAwesome\Traits\ExtConf;
 use Dagou\FontAwesome\Traits\Package;
 use Dagou\FontAwesome\Traits\PageRenderer;
-use Dagou\FontAwesome\Traits\Type;
+use Dagou\FontAwesome\Traits\Library;
 use TYPO3\CMS\Core\SingletonInterface;
 
 abstract class AbstractCdn implements Cdn, SingletonInterface {
-    use ExtConf, PageRenderer, Type, Package;
+    use ExtConf, PageRenderer, Library, Package;
 
     /**
      * @param array $packages
-     * @param string $type
+     * @param string $library
      * @param bool $footer
      */
-    public function load(array $packages = [], string $type = 'js', bool $footer = TRUE) {
+    public function load(array $packages = [], string $library = 'js', bool $footer = TRUE) {
         if (count($packages)) {
             if (in_array('all', $packages)) {
-                $this->loadPackage('all', $type, $footer);
+                $this->loadPackage('all', $library, $footer);
             } else {
                 foreach ($packages as $package) {
                     if ($this->isValidPackage($package)) {
-                        $this->loadPackage($package, $type, $footer);
+                        $this->loadPackage($package, $library, $footer);
                     }
                 }
 
-                $this->loadPackage('fontawesome', $type, $footer);
+                $this->loadPackage('fontawesome', $library, $footer);
             }
         }
     }
 
     /**
      * @param string $package
-     * @param string $type
+     * @param string $library
      * @param bool $footer
      */
-    protected function loadPackage(string $package, string $type, bool $footer) {
-        switch ($type) {
+    protected function loadPackage(string $package, string $library, bool $footer) {
+        switch ($library) {
             case 'js':
                 if ($footer) {
                     $this->getPageRenderer()->addJsFooterLibrary('font_awesome.'.$package, $this->getJs($package));
