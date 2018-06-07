@@ -26,8 +26,8 @@ class LoadViewHelper extends AbstractViewHelper {
         if (!$this->isValidLibrary($this->arguments['library'])) {
             $this->arguments['library'] = $this->defaultLibrary;
         }
-print_r('load'.LF);
-        $this->renderingContext->getVariableProvider()->add(LoadViewHelper::class.'.library', $this->arguments['library']);
+
+        $this->viewHelperVariableContainer->add(LoadViewHelper::class, 'library', $this->arguments['library']);
 
         if (is_array($this->arguments['packages'])) {
             $cdn = $this->getCdn(TRUE);
