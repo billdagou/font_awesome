@@ -60,7 +60,7 @@ class LoadViewHelper extends AbstractViewHelper {
      *
      * @return \Dagou\FontAwesome\Interfaces\Cdn
      */
-    protected function getCdn(bool $isCustomized) {
+    protected static function getCdn(bool $isCustomized) {
         if ($isCustomized) {
             return GeneralUtility::makeInstance(Customization::class);
         }
