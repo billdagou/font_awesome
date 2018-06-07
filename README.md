@@ -78,6 +78,7 @@ Stacked Icons see below.
 #### List
 - `size` (string) Icon size, `xs`, `sm`, `lg`, `2x`, `3x`, `4x`, `5x`, `6x`, `7x`, `8x`, `9x`, `10x`.
 
+
     <fa:list>
         <li><fa:solid icon="check-square" />List icons can</li>
     </fa:list>
@@ -89,25 +90,8 @@ Stacked Icons see below.
 - `rotate` (string) Rotated icon, `90`, `180`, `270`.
 - `flip` (string) Flipped icon, `horizontal`, `vertical`.
 
+
     <fa:stack>
         <fa:solid icon="square" largerIcon="true" />
         <fa:solid icon="twitter" inverse="true" />
     </fa:stack>
-    
-#### StackViewHelper
-Stacked icons wrapper.
-
-	<fa:stack>
-		<fa:icon icon="square-o" stack-size="2x" />
-		<fa:icon icon="twitter" stack-size="1x" />
-	</fa:stack>
-
-Allowed attributes:
-
-- `class` (string)
-Other class(es) you need for the stack.
-
-## How to maintain the CDN resources
-To replace or add new CDN resources, please update $GLOBALS\['TYPO3\_CONF\_VARS'\]\['EXTCONF'\]\['font_awesome'\]\['CDN'\] in your own extension.
-
-	$GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['font_awesome']['CDN']['New_CDN_Name'] = '...';

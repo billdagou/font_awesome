@@ -7,6 +7,7 @@ use Dagou\FontAwesome\Interfaces\Cdn;
 use Dagou\FontAwesome\Traits\ExtConf;
 use Dagou\FontAwesome\Traits\Library;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3Fluid\Fluid\Core\Rendering\RenderingContextInterface;
 use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
 
 class LoadViewHelper extends AbstractViewHelper {
@@ -22,35 +23,35 @@ class LoadViewHelper extends AbstractViewHelper {
         $this->registerArgument('packages', 'array', 'Font Awesome packages.');
     }
 
-    public function render() {
-        if (!$this->isValidLibrary($this->arguments['library'])) {
-            $this->arguments['library'] = $this->defaultLibrary;
+    public static function renderStatic(array $arguments, \Closure $renderChildrenClosure, RenderingContextInterface $renderingContext) {
+        if (!self::isValidLibrary($arguments['library'])) {
+            $arguments['library'] = self::$defaultLibrary;
         }
 
-        $this->viewHelperVariableContainer->add(LoadViewHelper::class, 'library', $this->arguments['library']);
+        $renderingContext->getVariableProvider()->add(LoadViewHelper::class, 'library', $arguments['library']);
 
-        if (is_array($this->arguments['packages'])) {
-            $cdn = $this->getCdn(TRUE);
+        if (is_array($arguments['packages'])) {
+            $cdn = self::getCdn(TRUE);
 
-            $cdn->load($this->arguments['packages'], $this->arguments['library'], $this->arguments['footer']);
+            $cdn->load($arguments['packages'], $arguments['library'], $arguments['footer']);
         } else {
-            $cdn = $this->getCdn(FALSE);
+            $cdn = self::getCdn(FALSE);
 
             $packages = [];
-            if ($this->arguments['all']) {
+            if ($arguments['all']) {
                 $packages[] = 'all';
             }
-            if ($this->arguments['solid']) {
+            if ($arguments['solid']) {
                 $packages[] = 'solid';
             }
-            if ($this->arguments['regular']) {
+            if ($arguments['regular']) {
                 $packages[] = 'regular';
             }
-            if ($this->arguments['brands']) {
+            if ($arguments['brands']) {
                 $packages[] = 'brands';
             }
 
-            $cdn->load($packages, $this->arguments['library'], $this->arguments['footer']);
+            $cdn->load($packages, $arguments['library'], $arguments['footer']);
         }
     }
 

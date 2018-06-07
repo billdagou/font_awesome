@@ -5,11 +5,10 @@ use Dagou\FontAwesome\Interfaces\Cdn;
 use Dagou\FontAwesome\Traits\ExtConf;
 use Dagou\FontAwesome\Traits\Package;
 use Dagou\FontAwesome\Traits\PageRenderer;
-use Dagou\FontAwesome\Traits\Library;
 use TYPO3\CMS\Core\SingletonInterface;
 
 abstract class AbstractCdn implements Cdn, SingletonInterface {
-    use ExtConf, PageRenderer, Library, Package;
+    use ExtConf, PageRenderer, Package;
 
     /**
      * @param array $packages

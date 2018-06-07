@@ -12,14 +12,14 @@ trait Library {
     /**
      * @var string
      */
-    protected $defaultLibrary = 'js';
+    protected static $defaultLibrary = 'js';
 
     /**
      * @param string $library
      *
      * @return bool
      */
-    protected function isValidLibrary(string $library) {
+    protected static function isValidLibrary(string $library) {
         return in_array($library, self::$libraries);
     }
 }
