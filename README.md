@@ -40,10 +40,10 @@ To add new CDN source, please refer to `\Dagou\FontAwesome\Cdn\FontAwesome` and 
 - `border` (boolean) Bordered or not.
 - `pull` (string) Pulled icon, `left`, `right`.
 - `animation` (string) Animated icon, `spin`, `pulse`.
-- `rotate` (string) Rotated icon, `90`, `180`, `270`.
+- `rotate` (string) Rotated icon, `90`, `180`, `270` for CSS library, no limitation for JS library.
 - `flip` (string) Flipped icon, `h`, `v`.
 - `inverse` (boolean) Inversed color or not.
-- `largerIcon` (boolean) Stack larger icon or not. **Stack ONLY**
+- `large` (boolean) Stack larger icon or not. **Stack ONLY**
 - `grow` (float) Scale up. Default `0`. **JS library ONLY**
 - `shrink` (float) Scale down. Default `0`. **JS library ONLY**
 - `up` (float) Move up. Default `0`. **JS library ONLY**
@@ -113,6 +113,6 @@ Masking
 
 
     <fa:stack>
-        <fa:solid icon="square" largerIcon="true" />
+        <fa:solid icon="square" large="true" />
         <fa:solid icon="twitter" inverse="true" />
     </fa:stack>

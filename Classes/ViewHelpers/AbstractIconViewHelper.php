@@ -33,7 +33,7 @@ abstract class AbstractIconViewHelper extends AbstractTagBasedViewHelper {
         $this->registerArgument('flip', 'string', 'Flipped icon.');
         $this->registerArgument('inverse', 'boolean', 'Inversed color or not.');
 
-        $this->registerArgument('largerIcon', 'boolean', 'Stack larger icon or not.');
+        $this->registerArgument('large', 'boolean', 'Stack larger icon or not.');
 
         $this->registerArgument('grow', 'int', 'Scale up.', FALSE, 0);
         $this->registerArgument('shrink', 'int', 'Scale down.', FALSE, 0);
@@ -129,7 +129,7 @@ abstract class AbstractIconViewHelper extends AbstractTagBasedViewHelper {
         }
 
         if ($this->viewHelperVariableContainer->get(StackViewHelper::class, 'isStack')) {
-            if ($this->arguments['largerIcon']) {
+            if ($this->arguments['large']) {
                 $classes[] = 'fa-stack-2x';
             } else {
                 $classes[] = 'fa-stack-1x';
