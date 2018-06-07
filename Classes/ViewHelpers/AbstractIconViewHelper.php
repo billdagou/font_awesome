@@ -47,6 +47,9 @@ abstract class AbstractIconViewHelper extends AbstractTagBasedViewHelper {
      * @return string
      */
     public function render() {
+print_r(get_class($this->renderingContext->getVariableProvider()).LF);
+print_r($this->viewHelperVariableContainer);
+
         $classes = [
             $this->stylePrefix,
             'fa-'.$this->arguments['icon'],

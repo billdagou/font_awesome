@@ -29,16 +29,11 @@ You can also load your own library or packages.
 Or, load the JS before the &lt;BODY&gt; tag.
 
     <fa:load footer="false" />
-    
+
 To add new CDN source, please refer to `\Dagou\FontAwesome\Cdn\FontAwesome` and update `$GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['font_awesome']['CDN']` accordingly.  
 
-([SVG with JavaScript](https://fontawesome.com/how-to-use/svg-with-js)) 
-([Web Fonts with CSS](https://fontawesome.com/how-to-use/web-fonts-with-css))
-
 ## ViewHelper
-
 #### Icon (Solid, Regular, Light, Brand)
-
 - `icon` (string) Icon name. **Required**
 - `size` (string) Icon size, `xs`, `sm`, `lg`, `2x`, `3x`, `4x`, `5x`, `6x`, `7x`, `8x`, `9x`, `10x`.
 - `fixedWidth` (boolean) Fixed width or not.
@@ -53,14 +48,16 @@ To add new CDN source, please refer to `\Dagou\FontAwesome\Cdn\FontAwesome` and 
 Basic Use
 
     <fa:solid icon="camera-retro" />
-    
+
 Icon Sizes
 
     <fa:solid icon="camera-retro" size="xs" />
-    
+
 Fixed Width Icons
 
     <div><fa:solid icon="home" fixedWidth="true" style="background:MistyRose" /> Home</div>
+
+List Icons see below
     
 Bordered & Pulled Icons
 
@@ -69,25 +66,34 @@ Bordered & Pulled Icons
 Animated Icons
 
     <fa:solid icon="spinner" animation="spin" />
-    
+
 Rotated & Flipped Icons
 
     <fa:brand icon="font-awesome" />
     <fa:brand icon="font-awesome" rotate="90" />
     <fa:brand icon="font-awesome" flip="horizontal" />
 
-#### ListViewHelper
-List icons wrapper.
+Stacked Icons see below.
 
-	<fa:list>
-		<li><fa:icon icon="check-square" />List icons</li>
-	</fa:list>
+#### List
+- `size` (string) Icon size, `xs`, `sm`, `lg`, `2x`, `3x`, `4x`, `5x`, `6x`, `7x`, `8x`, `9x`, `10x`.
 
-Allowed attributes:
+    <fa:list>
+        <li><fa:solid icon="check-square" />List icons can</li>
+    </fa:list>
 
-- `class` (string)
-Other class(es) you need for the list.
+#### Stack
+- `size` (string) Icon size, `xs`, `sm`, `lg`, `2x`, `3x`, `4x`, `5x`, `6x`, `7x`, `8x`, `9x`, `10x`.
+- `pull` (string) Pulled icon, `left`, `right`.
+- `animation` (string) Animated icon, `spin`, `pulse`.
+- `rotate` (string) Rotated icon, `90`, `180`, `270`.
+- `flip` (string) Flipped icon, `horizontal`, `vertical`.
 
+    <fa:stack>
+        <fa:solid icon="square" largerIcon="true" />
+        <fa:solid icon="twitter" inverse="true" />
+    </fa:stack>
+    
 #### StackViewHelper
 Stacked icons wrapper.
 
