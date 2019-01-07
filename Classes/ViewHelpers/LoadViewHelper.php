@@ -29,7 +29,7 @@ class LoadViewHelper extends AbstractViewHelper {
         }
 
         $this->viewHelperVariableContainer->add(LoadViewHelper::class, 'library', $this->arguments['library']);
-print_r($this->arguments['packages']);
+
         if (is_array($this->arguments['packages'])) {
             $cdn = $this->getCdn(TRUE);
 
