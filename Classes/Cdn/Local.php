@@ -15,13 +15,13 @@ class Local extends AbstractCdn {
     protected function getCss(string $package) {
         switch ($package) {
             case 'all':
-                $css = self::URL.'css/fontawesome-all.min.css';
+                $css = self::URL.'css/all.min.css';
             break;
             case 'fontawesome':
                 $css = self::URL.'css/fontawesome.min.css';
             break;
             default:
-                $css = self::URL.'css/fa-'.$package.'.min.css';
+                $css = self::URL.'css/'.$package.'.min.css';
         }
 
         return $this->getAssetPath($css);
@@ -35,13 +35,13 @@ class Local extends AbstractCdn {
     protected function getJs(string $package) {
         switch ($package) {
             case 'all':
-                $js = self::URL.'js/fontawesome-all.min.js';
+                $js = self::URL.'js/all.min.js';
             break;
             case 'fontawesome':
                 $js = self::URL.'js/fontawesome.min.js';
             break;
             default:
-                $js = self::URL.'js/fa-'.$package.'.min.js';
+                $js = self::URL.'js/'.$package.'.min.js';
         }
 
         return $this->getAssetPath($js);
