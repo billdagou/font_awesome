@@ -43,7 +43,7 @@ class Local extends AbstractCdn {
             default:
                 $js = self::URL.'js/'.$package.'.min.js';
         }
-print_r($js);
+
         return $this->getAssetPath($js);
     }
 }
