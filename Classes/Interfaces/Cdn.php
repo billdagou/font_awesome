@@ -2,7 +2,7 @@
 namespace Dagou\FontAwesome\Interfaces;
 
 interface Cdn {
-    const VERSION = '5.0.13';
+    const VERSION = '5.6.3';
 
     /**
      * @param array $packages
