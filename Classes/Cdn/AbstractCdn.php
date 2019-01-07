@@ -16,12 +16,14 @@ abstract class AbstractCdn implements Cdn, SingletonInterface {
      * @param bool $footer
      */
     public function load(array $packages = [], string $library = 'js', bool $footer = TRUE) {
+        print_r($packages);
         if (count($packages)) {
             if (in_array('all', $packages)) {
                 $this->loadPackage('all', $library, $footer);
             } else {
                 foreach ($packages as $package) {
                     if ($this->isValidPackage($package)) {
+print_r($package);
                         $this->loadPackage($package, $library, $footer);
                     }
                 }
