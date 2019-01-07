@@ -11,5 +11,5 @@ $EM_CONF[$_EXTKEY] = [
     'state' => 'stable',
     'author' => 'Bill.Dagou',
     'author_email' => 'billdagou@gmail.com',
-    'version' => '5.0.13',
+    'version' => '5.6.3',
 ];
