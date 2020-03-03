@@ -1,2 +1,0 @@
-# cat=Font Awesome; type=user[Dagou\FontAwesome\Utility\ExtensionManagerConfigurationUtility->buildCdnSelector]; label=Font Awesome CDN
-cdn =

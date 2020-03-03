@@ -8,11 +8,7 @@ You can easily choose using CDN or local Font Awesome library.
 ## How to use it
 You can load the library in your Fluid template with **LoadViewHelper**.
 
-	<html xmlns="http://www.w3.org/1999/xhtml" lang="en"
-		xmlns:fa="http://typo3.org/ns/Dagou/FontAwesome/ViewHelpers"
-		data-namespace-typo3-fluid="true">
-		<fa:load />
-	</html>
+	<fa:load />
 
 Or only some specific style packages, like `solid`, `regular`, or `brands`. Default `all`.
 
