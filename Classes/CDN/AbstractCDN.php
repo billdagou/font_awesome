@@ -28,7 +28,7 @@ abstract class AbstractCDN implements CDN, SingletonInterface {
      * @return string
      */
     protected function renderCss(string $style, array $css = NULL): string {
-        return static::URL.$this->getCssBuild($style);
+        return static::URL.'css/'.$this->getCssBuild($style);
     }
 
     /**
@@ -79,7 +79,7 @@ abstract class AbstractCDN implements CDN, SingletonInterface {
      * @return string
      */
     protected function renderJs(string $style, array $js = NULL): string {
-        return static::URL.$this->getJsBuild($style);
+        return static::URL.'js/'.$this->getJsBuild($style);
     }
 
     /**
