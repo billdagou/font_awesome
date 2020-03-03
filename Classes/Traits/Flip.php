@@ -15,7 +15,7 @@ trait Flip {
      *
      * @return bool
      */
-    protected function isValidFlip(string $flip) {
+    protected function isValidFlip(string $flip): bool {
         return in_array($flip, array_keys(self::$flips));
     }
 }
