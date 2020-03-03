@@ -77,55 +77,58 @@ abstract class AbstractIconViewHelper extends AbstractTagBasedViewHelper {
             $classes[] = 'fa-'.$this->arguments['animation'];
         }
 
-        if ($this->viewHelperVariableContainer->get(LoadViewHelper::class, 'library') === 'js') {
-            $transform = [];
-
-            if ($this->arguments['grow'] !== $this->arguments['shrink']) {
-                $transform[$this->arguments['grow'] > $this->arguments['shrink'] ? 'grow' : 'shrink'] =
-                    abs($this->arguments['grow'] - $this->arguments['shrink']);
-            }
-
-            if ($this->arguments['up'] !== $this->arguments['down']) {
-                $transform[$this->arguments['up'] > $this->arguments['down'] ? 'up' : 'down'] =
-                    abs($this->arguments['up'] - $this->arguments['down']);
-            }
-
-            if ($this->arguments['left'] !== $this->arguments['right']) {
-                $transform[$this->arguments['left'] > $this->arguments['right'] ? 'left' : 'right'] =
-                    abs($this->arguments['left'] - $this->arguments['right']);
-            }
-
-            if ($this->arguments['rotate'] && $this->isValidRotate($this->arguments['rotate'])) {
-                $transform['rotate'] = $this->arguments['rotate'];
-            }
-
-            if ($this->arguments['flip'] && $this->isValidFlip($this->arguments['flip'])) {
-                $transform['flip'] = $this->arguments['flip'];
-            }
-
-            if (count($transform)) {
-                $data['fa-transform'] = '';
-
-                foreach ($transform as $key => $value) {
-                    $data['fa-transform'] .= ($data['fa-transform'] ? ' ' : '').$key.'-'.$value;
-                }
-            }
-
-            if ($this->arguments['mask']) {
-                if (!$this->isValidStyle($this->arguments['maskStyle'])) {
-                    $this->arguments['maskStyle'] = $this->defaultStyle;
+        switch ($this->viewHelperVariableContainer->get(AbstractLoadViewHelper::class, 'technology')) {
+            case 'css':
+                if ($this->arguments['rotate'] && $this->isValidRotate($this->arguments['rotate'])) {
+                    $classes[] = 'fa-rotate-'.$this->arguments['rotate'];
                 }
 
-                $data['fa-mask'] = self::$styles[$this->arguments['maskStyle']].' fa-'.$this->arguments['mask'];
-            }
-        } else {
-            if ($this->arguments['rotate'] && $this->isValidRotate($this->arguments['rotate'])) {
-                $classes[] = 'fa-rotate-'.$this->arguments['rotate'];
-            }
+                if ($this->arguments['flip'] && $this->isValidFlip($this->arguments['flip'])) {
+                    $classes[] = 'fa-flip-'.self::$flips[$this->arguments['flip']];
+                }
+            break;
+            case 'js':
+                $transform = [];
 
-            if ($this->arguments['flip'] && $this->isValidFlip($this->arguments['flip'])) {
-                $classes[] = 'fa-flip-'.self::$flips[$this->arguments['flip']];
-            }
+                if ($this->arguments['grow'] !== $this->arguments['shrink']) {
+                    $transform[$this->arguments['grow'] > $this->arguments['shrink'] ? 'grow' : 'shrink'] =
+                        abs($this->arguments['grow'] - $this->arguments['shrink']);
+                }
+
+                if ($this->arguments['up'] !== $this->arguments['down']) {
+                    $transform[$this->arguments['up'] > $this->arguments['down'] ? 'up' : 'down'] =
+                        abs($this->arguments['up'] - $this->arguments['down']);
+                }
+
+                if ($this->arguments['left'] !== $this->arguments['right']) {
+                    $transform[$this->arguments['left'] > $this->arguments['right'] ? 'left' : 'right'] =
+                        abs($this->arguments['left'] - $this->arguments['right']);
+                }
+
+                if ($this->arguments['rotate'] && $this->isValidRotate($this->arguments['rotate'])) {
+                    $transform['rotate'] = $this->arguments['rotate'];
+                }
+
+                if ($this->arguments['flip'] && $this->isValidFlip($this->arguments['flip'])) {
+                    $transform['flip'] = $this->arguments['flip'];
+                }
+
+                if (count($transform)) {
+                    $data['fa-transform'] = '';
+
+                    foreach ($transform as $key => $value) {
+                        $data['fa-transform'] .= ($data['fa-transform'] ? ' ' : '').$key.'-'.$value;
+                    }
+                }
+
+                if ($this->arguments['mask']) {
+                    if (!$this->isValidStyle($this->arguments['maskStyle'])) {
+                        $this->arguments['maskStyle'] = $this->defaultStyle;
+                    }
+
+                    $data['fa-mask'] = self::$styles[$this->arguments['maskStyle']].' fa-'.$this->arguments['mask'];
+                }
+            break;
         }
 
         if ($this->viewHelperVariableContainer->get(StackViewHelper::class, 'isStack')) {
