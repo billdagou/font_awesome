@@ -7,7 +7,7 @@ trait Pull {
      *
      * @return bool
      */
-    protected function isValidPull(string $pull) {
+    protected function isValidPull(string $pull): bool {
         return in_array($pull, [
             'left',
             'right',

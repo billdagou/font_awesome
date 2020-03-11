@@ -5,7 +5,7 @@ trait Style {
     /**
      * @var array
      */
-    protected static $styles = [
+    protected $styles = [
         'solid' => 'fas',
         'regular' => 'far',
         'light' => 'fal',
@@ -21,7 +21,7 @@ trait Style {
      *
      * @return bool
      */
-    protected function isValidStyle(string $style) {
-        return in_array($style, array_keys(self::$styles));
+    protected function isValidStyle(string $style): bool {
+        return in_array($style, array_keys($this->styles));
     }
 }

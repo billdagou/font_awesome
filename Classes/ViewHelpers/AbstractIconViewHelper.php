@@ -84,7 +84,7 @@ abstract class AbstractIconViewHelper extends AbstractTagBasedViewHelper {
                 }
 
                 if ($this->arguments['flip'] && $this->isValidFlip($this->arguments['flip'])) {
-                    $classes[] = 'fa-flip-'.self::$flips[$this->arguments['flip']];
+                    $classes[] = 'fa-flip-'.$this->flips[$this->arguments['flip']];
                 }
             break;
             case 'js':
@@ -126,7 +126,7 @@ abstract class AbstractIconViewHelper extends AbstractTagBasedViewHelper {
                         $this->arguments['maskStyle'] = $this->defaultStyle;
                     }
 
-                    $data['fa-mask'] = self::$styles[$this->arguments['maskStyle']].' fa-'.$this->arguments['mask'];
+                    $data['fa-mask'] = $this->styles[$this->arguments['maskStyle']].' fa-'.$this->arguments['mask'];
                 }
             break;
         }

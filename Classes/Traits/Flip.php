@@ -5,7 +5,7 @@ trait Flip {
     /**
      * @var array
      */
-    protected static $flips = [
+    protected $flips = [
         'h' => 'horizontal',
         'v' => 'vertical',
     ];
@@ -16,6 +16,6 @@ trait Flip {
      * @return bool
      */
     protected function isValidFlip(string $flip): bool {
-        return in_array($flip, array_keys(self::$flips));
+        return in_array($flip, array_keys($this->flips));
     }
 }
