@@ -1,4 +1,5 @@
 # TYPO3 Extension: Font Awesome
+
 EXT:font_awesome allows you to use [Font Awesome](https://fontawesome.com/) in your extensions.
 
 You can easily choose using CDN or local Font Awesome library.
