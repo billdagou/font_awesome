@@ -2,7 +2,7 @@
 namespace Dagou\FontAwesome\Interfaces;
 
 interface CDN {
-    const VERSION = '5.13.0';
+    const VERSION = '5.14.0';
 
     /**
      * @param array $styles

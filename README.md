@@ -2,8 +2,6 @@
 
 EXT:font_awesome allows you to use [Font Awesome](https://fontawesome.com/) in your extensions.
 
-You can easily choose using CDN or local Font Awesome library.
-
 **The extension version only matches Font Awesome library version, doesn't mean anything else.**
 
 ## How to use it
@@ -27,7 +25,9 @@ Or, load the JS before the &lt;BODY&gt; tag.
 
     <fa:load footer="false" />
 
-To add new CDN source, please refer to `\Dagou\FontAwesome\Cdn\FontAwesome` and update `$GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['font_awesome']['CDN']` accordingly.  
+To use the CDN resource, please set `$GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['font_awesome']['CDN']` in `ext_localconf.php` or `AdditionalConfiguration.php`.
+
+    $GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['font_awesome']['CDN'] = \Vendor\Extension\CDN::class;
 
 ## ViewHelper
 #### Icon (Solid, Regular, Light, Brand)
