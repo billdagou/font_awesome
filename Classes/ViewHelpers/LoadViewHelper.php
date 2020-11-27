@@ -26,7 +26,7 @@ class LoadViewHelper extends AbstractViewHelper {
             case 'css':
                 $GLOBALS['TSFE']->fe_user->setKey('ses', 'font_awesome.technology', 'css');
 
-                $cdn = $this->getCDN((bool)$this->arguments['files'], $this->arguments['disableCdn']);
+                $cdn = $this->getCDN((bool)$this->arguments['files']);
 
                 $cdn->loadCss($this->getStyles(), $this->arguments['files']);
             break;
@@ -34,7 +34,7 @@ class LoadViewHelper extends AbstractViewHelper {
             default:
                 $GLOBALS['TSFE']->fe_user->setKey('ses', 'font_awesome.technology', 'js');
 
-                $cdn = $this->getCDN((bool)$this->arguments['files'], $this->arguments['disableCdn']);
+                $cdn = $this->getCDN((bool)$this->arguments['files']);
 
                 $cdn->loadJs($this->getStyles(), $this->arguments['files'], $this->arguments['footer']);
         }
@@ -42,16 +42,15 @@ class LoadViewHelper extends AbstractViewHelper {
 
     /**
      * @param bool $isCustomized
-     * @param bool $disableCdn
      *
      * @return \Dagou\FontAwesome\Interfaces\CDN
      */
-    protected function getCDN(bool $isCustomized, bool $disableCdn): CDN {
+    protected function getCDN(bool $isCustomized): CDN {
         if ($isCustomized) {
             return GeneralUtility::makeInstance(Customization::class);
         }
 
-        if (!$disableCdn && ($className = $GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['font_awesome']['CDN']) && is_subclass_of($className, CDN::class)) {
+        if ($this->isCdnEnabled() && ($className = $GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['font_awesome']['CDN']) && is_subclass_of($className, CDN::class)) {
             return GeneralUtility::makeInstance($className);
         } else {
             return GeneralUtility::makeInstance(Local::class);
@@ -81,5 +80,12 @@ class LoadViewHelper extends AbstractViewHelper {
         }
 
         return $styles;
+    }
+
+    /**
+     * @return bool
+     */
+    protected function isCdnEnabled(): bool {
+        return !$this->arguments['disableCdn'];
     }
 }
