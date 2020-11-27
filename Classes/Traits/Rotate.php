@@ -1,8 +1,6 @@
 <?php
 namespace Dagou\FontAwesome\Traits;
 
-use Dagou\FontAwesome\ViewHelpers\AbstractLoadViewHelper;
-
 trait Rotate {
     /**
      * @param string $rotate
@@ -10,7 +8,7 @@ trait Rotate {
      * @return bool
      */
     protected function isValidRotate(string $rotate): bool {
-        if ($this->viewHelperVariableContainer->get(AbstractLoadViewHelper::class, 'technology') === 'js') {
+        if ($GLOBALS['TSFE']->fe_user->getKey('ses', 'font_awesome.technology') === 'js') {
             return is_numeric($rotate);
         }
 

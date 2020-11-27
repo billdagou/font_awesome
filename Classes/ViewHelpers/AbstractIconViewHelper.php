@@ -77,7 +77,7 @@ abstract class AbstractIconViewHelper extends AbstractTagBasedViewHelper {
             $classes[] = 'fa-'.$this->arguments['animation'];
         }
 
-        switch ($this->viewHelperVariableContainer->get(AbstractLoadViewHelper::class, 'technology')) {
+        switch ($GLOBALS['TSFE']->fe_user->getKey('ses', 'font_awesome.technology')) {
             case 'css':
                 if ($this->arguments['rotate'] && $this->isValidRotate($this->arguments['rotate'])) {
                     $classes[] = 'fa-rotate-'.$this->arguments['rotate'];

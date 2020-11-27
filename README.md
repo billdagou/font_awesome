@@ -19,7 +19,7 @@ And decide which library you want to load, `js` or `css`. Default `js`.
 
 You can also load your own library or packages.
 
-    <fa:load packages="{...}" />
+    <fa:load files="{...}" />
     
 Or, load the JS before the &lt;BODY&gt; tag.
 
@@ -28,6 +28,10 @@ Or, load the JS before the &lt;BODY&gt; tag.
 To use the CDN resource, please set `$GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['font_awesome']['CDN']` in `ext_localconf.php` or `AdditionalConfiguration.php`.
 
     $GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['font_awesome']['CDN'] = \Vendor\Extension\CDN::class;
+
+Unfortunately, you may have to disable the CDN for some reason, like saving as PDF by [WKHtmlToPdf](https://wkhtmltopdf.org/).
+
+    <fa:load disableCdn="true" />
 
 ## ViewHelper
 #### Icon (Solid, Regular, Light, Brand)
