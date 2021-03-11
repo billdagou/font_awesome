@@ -5,5 +5,5 @@ class BrandViewHelper extends AbstractIconViewHelper {
     /**
      * @var string
      */
-    protected $stylePrefix = 'fab';
+    protected $packageClass = 'fab';
 }

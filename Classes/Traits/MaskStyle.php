@@ -1,11 +1,11 @@
 <?php
 namespace Dagou\FontAwesome\Traits;
 
-trait Style {
+trait MaskStyle {
     /**
      * @var array
      */
-    protected $styles = [
+    protected $maskStyles = [
         'solid' => 'fas',
         'regular' => 'far',
         'light' => 'fal',
@@ -14,14 +14,14 @@ trait Style {
     /**
      * @var string
      */
-    protected $defaultStyle = 'solid';
+    protected $defaultMaskStyle = 'solid';
 
     /**
-     * @param string $style
+     * @param string $maskStyle
      *
      * @return bool
      */
-    protected function isValidStyle(string $style): bool {
-        return in_array($style, array_keys($this->styles));
+    protected function isValidMaskStyle(string $maskStyle): bool {
+        return in_array($maskStyle, array_keys($this->maskStyles));
     }
 }

@@ -5,5 +5,5 @@ class RegularViewHelper extends AbstractIconViewHelper {
     /**
      * @var string
      */
-    protected $stylePrefix = 'far';
+    protected $packageClass = 'far';
 }

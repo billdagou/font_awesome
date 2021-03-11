@@ -5,5 +5,5 @@ class LightViewHelper extends AbstractIconViewHelper {
     /**
      * @var string
      */
-    protected $stylePrefix = 'fal';
+    protected $packageClass = 'fal';
 }

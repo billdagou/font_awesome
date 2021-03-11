@@ -5,5 +5,5 @@ class SolidViewHelper extends AbstractIconViewHelper {
     /**
      * @var string
      */
-    protected $stylePrefix = 'fas';
+    protected $packageClass = 'fas';
 }

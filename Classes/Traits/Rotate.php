@@ -1,6 +1,10 @@
 <?php
 namespace Dagou\FontAwesome\Traits;
 
+use Dagou\FontAwesome\Interfaces\Framework;
+use Dagou\FontAwesome\Registry\FontAwesome;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
+
 trait Rotate {
     /**
      * @param string $rotate
@@ -8,7 +12,7 @@ trait Rotate {
      * @return bool
      */
     protected function isValidRotate(string $rotate): bool {
-        if ($GLOBALS['TSFE']->fe_user->getKey('ses', 'font_awesome.technology') === 'js') {
+        if (GeneralUtility::makeInstance(FontAwesome::class)->get(Framework::FRAMEWORK_JS)) {
             return is_numeric($rotate);
         }
 

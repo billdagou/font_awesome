@@ -5,33 +5,37 @@ EXT:font_awesome allows you to use [Font Awesome](https://fontawesome.com/) in y
 **The extension version only matches Font Awesome library version, doesn't mean anything else.**
 
 ## How to use it
-You can load the library in your Fluid template with **LoadViewHelper**.
+You can load the `JS` or `CSS` library in your Fluid template.
 
-	<fa:load />
-
-Or only some specific style packages, like `solid`, `regular`, or `brands`. Default `all`.
-
-    <fa:load all="false" solid="true" regular="true" brands="true" />
-
-And decide which library you want to load, `js` or `css`. Default `js`.
-
-    <fa:load library="css" /> 
-
-You can also load your own library or packages.
-
-    <fa:load files="{...}" />
+	<fa:loadJs />
     
-Or, load the JS before the &lt;BODY&gt; tag.
+    <fa:loadCss />
 
-    <fa:load footer="false" />
+You can load some specific style package, like `brands`, `solid`, `regular`, or `light`.
 
-To use the CDN resource, please set `$GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['font_awesome']['CDN']` in `ext_localconf.php` or `AdditionalConfiguration.php`.
+    <fa:loadJs package="fontawesome" />
+    <fa:loadJs package="solid" />
+    
+    <fa:loadCss package="fontawesome" />
+    <fa:loadCss package="solid" />
 
-    $GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['font_awesome']['CDN'] = \Vendor\Extension\CDN::class;
+You can also load your own library.
 
-Unfortunately, you may have to disable the CDN for some reason, like saving as PDF by [WKHtmlToPdf](https://wkhtmltopdf.org/).
+    <fa:loadJs src="..." />
+    
+    <fa:loadCss href="..." />
 
-    <fa:load disableCdn="true" />
+For more options please refer to &lt;f:asset.css&gt; and &lt;f:asset.script&gt;.
+
+To use other FontAwesome source, you can register it in `ext_localconf.php` or `AdditionalConfiguration.php`.
+
+    \Dagou\FontAwesome\Utility\ExtensionUtility::registerSource(\Vendor\Extension\Source::class);
+
+You may want to disable the other source and use the local one instead in some cases, for example saving page as PDF by [WKHtmlToPdf](https://wkhtmltopdf.org/).
+
+    <fa:loadJs disableSource="true" />
+    
+    <fa:loadCss disableSource="true" />
 
 ## ViewHelper
 #### Icon (Solid, Regular, Light, Brand)
