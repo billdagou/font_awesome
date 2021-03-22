@@ -7,23 +7,23 @@ EXT:font_awesome allows you to use [Font Awesome](https://fontawesome.com/) in y
 ## How to use it
 You can load the `JS` or `CSS` library in your Fluid template.
 
-	<fa:loadJs />
+	<fa:js />
     
-    <fa:loadCss />
+    <fa:css />
 
 You can load some specific style package, like `brands`, `solid`, `regular`, or `light`.
 
-    <fa:loadJs package="fontawesome" />
-    <fa:loadJs package="solid" />
+    <fa:js package="fontawesome" />
+    <fa:js package="solid" />
     
-    <fa:loadCss package="fontawesome" />
-    <fa:loadCss package="solid" />
+    <fa:css package="fontawesome" />
+    <fa:css package="solid" />
 
 You can also load your own library.
 
-    <fa:loadJs src="..." />
+    <fa:js src="..." />
     
-    <fa:loadCss href="..." />
+    <fa:css href="..." />
 
 For more options please refer to &lt;f:asset.css&gt; and &lt;f:asset.script&gt;.
 
@@ -33,9 +33,9 @@ To use other FontAwesome source, you can register it in `ext_localconf.php` or `
 
 You may want to disable the other source and use the local one instead in some cases, for example saving page as PDF by [WKHtmlToPdf](https://wkhtmltopdf.org/).
 
-    <fa:loadJs disableSource="true" />
+    <fa:js disableSource="true" />
     
-    <fa:loadCss disableSource="true" />
+    <fa:css disableSource="true" />
 
 ## ViewHelper
 #### Icon (Solid, Regular, Light, Brand)

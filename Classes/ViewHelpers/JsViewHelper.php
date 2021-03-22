@@ -8,9 +8,9 @@ use Dagou\FontAwesome\Source\Local;
 use Dagou\FontAwesome\Traits\Package;
 use Dagou\FontAwesome\Utility\ExtensionUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\CMS\Fluid\ViewHelpers\Asset\CssViewHelper;
+use TYPO3\CMS\Fluid\ViewHelpers\Asset\ScriptViewHelper;
 
-class LoadCssViewHelper extends CssViewHelper {
+class JsViewHelper extends ScriptViewHelper {
     use Package;
 
     public function initializeArguments(): void {
@@ -21,7 +21,7 @@ class LoadCssViewHelper extends CssViewHelper {
         $this->overrideArgument(
             'identifier',
             'string',
-            'Use this identifier within templates to only inject your CSS once, even though it is added multiple times.',
+            'Use this identifier within templates to only inject your JS once, even though it is added multiple times.',
             FALSE,
             'font_awesome'
         );
@@ -32,7 +32,7 @@ class LoadCssViewHelper extends CssViewHelper {
      */
     public function render(): string {
         if ($this->isValidPackage($this->arguments['package'])) {
-            if (!$this->arguments['href']) {
+            if (!$this->arguments['src']) {
                 if (!$this->arguments['disableSource']
                     && ($className = ExtensionUtility::getSource())
                     && is_subclass_of($className, Source::class)
@@ -42,12 +42,12 @@ class LoadCssViewHelper extends CssViewHelper {
                     $source = GeneralUtility::makeInstance(Local::class);
                 }
 
-                $this->tag->addAttribute('href', $source->getCss($this->arguments['package']));
+                $this->tag->addAttribute('src', $source->getJs($this->arguments['package']));
             }
 
             $this->arguments['identifier'] .= '.'.$this->arguments['package'];
 
-            GeneralUtility::makeInstance(FontAwesome::class)->set(Framework::FRAMEWORK_CSS, TRUE);
+            GeneralUtility::makeInstance(FontAwesome::class)->set(Framework::FRAMEWORK_JS, TRUE);
 
             return parent::render();
         }
