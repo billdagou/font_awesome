@@ -2,7 +2,7 @@
 namespace Dagou\FontAwesome\Interfaces;
 
 interface Source {
-    const VERSION = '5.15.2';
+    const VERSION = '6.2.0';
 
     /**
      * @param string $package

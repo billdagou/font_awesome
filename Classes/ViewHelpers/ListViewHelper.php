@@ -5,7 +5,6 @@ use Dagou\FontAwesome\Traits\Size;
 use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractTagBasedViewHelper;
 
 class ListViewHelper extends AbstractTagBasedViewHelper {
-    use Size;
     /**
      * @var string
      */
@@ -13,7 +12,6 @@ class ListViewHelper extends AbstractTagBasedViewHelper {
 
     public function initializeArguments() {
         parent::initializeArguments();
-        $this->registerArgument('size', 'string', 'Icon size.');
         $this->registerUniversalTagAttributes();
     }
 
@@ -31,10 +29,6 @@ class ListViewHelper extends AbstractTagBasedViewHelper {
             $classes = [
                 'fa-ul',
             ];
-
-            if ($this->arguments['size'] && $this->isValidSize($this->arguments['size'])) {
-                $classes[] = 'fa-'.$this->arguments['size'];
-            }
 
             if ($this->tag->getAttribute('class')) {
                 $classes[] = $this->tag->getAttribute('class');

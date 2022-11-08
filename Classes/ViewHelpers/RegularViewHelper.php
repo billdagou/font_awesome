@@ -1,9 +1,8 @@
 <?php
 namespace Dagou\FontAwesome\ViewHelpers;
 
+use Dagou\FontAwesome\Traits\Style\Regular;
+
 class RegularViewHelper extends AbstractIconViewHelper {
-    /**
-     * @var string
-     */
-    protected $packageClass = 'far';
+    use Regular;
 }

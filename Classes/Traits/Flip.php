@@ -6,16 +6,18 @@ trait Flip {
      * @var array
      */
     protected $flips = [
-        'h' => 'horizontal',
-        'v' => 'vertical',
+        'both',
+        'horizontal',
+        'vertical',
     ];
 
     /**
-     * @param string $flip
-     *
-     * @return bool
+     * @param array $classes
+     * @param array $data
      */
-    protected function isValidFlip(string $flip): bool {
-        return in_array($flip, array_keys($this->flips));
+    protected function flip(array &$classes, array &$data) {
+        if (in_array($this->arguments['flip'], $this->flips)) {
+            $classes[] = 'fa-flip-'.$this->arguments['flip'];
+        }
     }
 }

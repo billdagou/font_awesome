@@ -1,9 +1,8 @@
 <?php
 namespace Dagou\FontAwesome\ViewHelpers;
 
+use Dagou\FontAwesome\Traits\Style\Light;
+
 class LightViewHelper extends AbstractIconViewHelper {
-    /**
-     * @var string
-     */
-    protected $packageClass = 'fal';
+    use Light;
 }

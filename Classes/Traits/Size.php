@@ -3,24 +3,34 @@ namespace Dagou\FontAwesome\Traits;
 
 trait Size {
     /**
-     * @param string $size
-     *
-     * @return bool
+     * @var array
      */
-    protected function isValidSize(string $size): bool {
-        return in_array($size, [
-            'xs',
-            'sm',
-            'lg',
-            '2x',
-            '3x',
-            '4x',
-            '5x',
-            '6x',
-            '7x',
-            '8x',
-            '9x',
-            '10x',
-        ]);
+    protected $sizes = [
+        '2xs',
+        'xs',
+        'sm',
+        'lg',
+        'xl',
+        '2xl',
+        '1x',
+        '2x',
+        '3x',
+        '4x',
+        '5x',
+        '6x',
+        '7x',
+        '8x',
+        '9x',
+        '10x',
+    ];
+
+    /**
+     * @param array $classes
+     * @param array $data
+     */
+    protected function size(array &$classes, array &$data) {
+        if (in_array($this->arguments['size'], $this->sizes)) {
+            $classes[] = 'fa-'.$this->arguments['size'];
+        }
     }
 }

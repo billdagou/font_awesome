@@ -1,9 +1,8 @@
 <?php
 namespace Dagou\FontAwesome\ViewHelpers;
 
+use Dagou\FontAwesome\Traits\Style\Solid;
+
 class SolidViewHelper extends AbstractIconViewHelper {
-    /**
-     * @var string
-     */
-    protected $packageClass = 'fas';
+    use Solid;
 }

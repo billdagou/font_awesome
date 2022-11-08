@@ -1,25 +1,23 @@
 <?php
 namespace Dagou\FontAwesome\Traits;
 
-use Dagou\FontAwesome\Interfaces\Framework;
-use Dagou\FontAwesome\Registry\FontAwesome;
-use TYPO3\CMS\Core\Utility\GeneralUtility;
-
 trait Rotate {
     /**
-     * @param string $rotate
-     *
-     * @return bool
+     * @var array
      */
-    protected function isValidRotate(string $rotate): bool {
-        if (GeneralUtility::makeInstance(FontAwesome::class)->get(Framework::FRAMEWORK_JS)) {
-            return is_numeric($rotate);
-        }
+    protected $rotates = [
+        '90',
+        '180',
+        '270',
+    ];
 
-        return in_array($rotate, [
-            '90',
-            '180',
-            '270',
-        ]);
+    /**
+     * @param array $classes
+     * @param array $data
+     */
+    protected function rotate(array &$classes, array &$data) {
+        if (in_array($this->arguments['rotate'], $this->rotates)) {
+            $classes[] = 'fa-rotate-'.$this->arguments['rotate'];
+        }
     }
 }

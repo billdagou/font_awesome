@@ -2,14 +2,14 @@
 $EM_CONF[$_EXTKEY] = [
     'title' => 'Font Awesome',
     'description' => 'Font Awesome, https://fontawesome.com/',
-    'category' => 'misc',
-    'author' => 'Bill.Dagou',
-    'author_email' => 'billdagou@gmail.com',
-    'version' => '5.15.2',
-    'state' => 'stable',
+    'version' => '6.2.0',
+    'category' => 'plugin',
     'constraints' => [
         'depends' => [
-            'typo3' => '10.4.0-10.4.99',
+            'typo3' => '11.5.0-11.5.99',
         ],
     ],
+    'state' => 'stable',
+    'author' => 'Bill.Dagou',
+    'author_email' => 'billdagou@gmail.com',
 ];
