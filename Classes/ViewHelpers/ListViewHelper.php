@@ -18,7 +18,7 @@ class ListViewHelper extends AbstractTagBasedViewHelper {
     /**
      * @return string
      */
-    public function render() {
+    public function render(): string {
         $this->viewHelperVariableContainer->add(ListViewHelper::class, 'isList', TRUE);
 
         $content = $this->renderChildren();
@@ -40,5 +40,7 @@ class ListViewHelper extends AbstractTagBasedViewHelper {
 
             return $this->tag->render();
         }
+
+        return '';
     }
 }

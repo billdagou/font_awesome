@@ -2,10 +2,7 @@
 namespace Dagou\FontAwesome\Traits;
 
 trait Size {
-    /**
-     * @var array
-     */
-    protected $sizes = [
+    protected array $sizes = [
         '2xs',
         'xs',
         'sm',

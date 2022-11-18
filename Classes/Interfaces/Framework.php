@@ -2,6 +2,7 @@
 namespace Dagou\FontAwesome\Interfaces;
 
 interface Framework {
-    const FRAMEWORK_CSS = 'css';
-    const FRAMEWORK_JS = 'js';
+    public const NAME = 'fa-framework';
+    public const CSS = 'css';
+    public const JS = 'js';
 }

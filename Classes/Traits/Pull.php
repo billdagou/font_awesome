@@ -2,10 +2,7 @@
 namespace Dagou\FontAwesome\Traits;
 
 trait Pull {
-    /**
-     * @var array
-     */
-    protected $pulls = [
+    protected array $pulls = [
         'left',
         'right',
     ];

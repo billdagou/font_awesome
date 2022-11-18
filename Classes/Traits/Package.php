@@ -2,10 +2,7 @@
 namespace Dagou\FontAwesome\Traits;
 
 trait Package {
-    /**
-     * @var array
-     */
-    protected $packages = [
+    protected array $packages = [
         'all',
         'brands',
         'solid',

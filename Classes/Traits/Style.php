@@ -2,10 +2,7 @@
 namespace Dagou\FontAwesome\Traits;
 
 trait Style {
-    /**
-     * @var array
-     */
-    protected $styles = [
+    protected array $styles = [
         'brands',
         'duotone',
         'light',

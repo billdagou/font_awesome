@@ -1,11 +1,10 @@
 <?php
 namespace Dagou\FontAwesome\Traits;
 
+use Dagou\FontAwesome\Interfaces\Framework;
+
 trait Flip {
-    /**
-     * @var array
-     */
-    protected $flips = [
+    protected array $flips = [
         'both',
         'horizontal',
         'vertical',

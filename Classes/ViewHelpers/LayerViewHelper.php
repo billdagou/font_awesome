@@ -21,7 +21,7 @@ class LayerViewHelper extends AbstractTagBasedViewHelper {
     /**
      * @return string
      */
-    public function render() {
+    public function render(): string {
         $this->viewHelperVariableContainer->add(self::class, 'isLayer', TRUE);
 
         $content = $this->renderChildren();
@@ -46,5 +46,7 @@ class LayerViewHelper extends AbstractTagBasedViewHelper {
 
             return $this->tag->render();
         }
+
+        return '';
     }
 }

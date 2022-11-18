@@ -2,10 +2,7 @@
 namespace Dagou\FontAwesome\Traits;
 
 trait Animation {
-    /**
-     * @var array
-     */
-    protected $animations = [
+    protected array $animations = [
         'beat',
         'fade',
         'beat-fade',

@@ -2,7 +2,7 @@
 $EM_CONF[$_EXTKEY] = [
     'title' => 'Font Awesome',
     'description' => 'Font Awesome, https://fontawesome.com/',
-    'version' => '6.2.0',
+    'version' => '6.2.1',
     'category' => 'plugin',
     'constraints' => [
         'depends' => [

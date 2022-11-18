@@ -3,7 +3,6 @@ namespace Dagou\FontAwesome\ViewHelpers;
 
 use Dagou\FontAwesome\Interfaces\Framework;
 use Dagou\FontAwesome\Interfaces\Source;
-use Dagou\FontAwesome\Registry\FontAwesome;
 use Dagou\FontAwesome\Source\Local;
 use Dagou\FontAwesome\Traits\Package;
 use Dagou\FontAwesome\Utility\ExtensionUtility;
@@ -47,7 +46,7 @@ class JsViewHelper extends ScriptViewHelper {
 
             $this->arguments['identifier'] .= '.'.$this->arguments['package'];
 
-            GeneralUtility::makeInstance(FontAwesome::class)->set(Framework::FRAMEWORK_JS, TRUE);
+            $GLOBALS['TSFE']->fe_user->setKey('ses', Framework::NAME, Framework::JS);
 
             return parent::render();
         }

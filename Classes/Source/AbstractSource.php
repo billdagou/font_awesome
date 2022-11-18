@@ -5,7 +5,8 @@ use Dagou\FontAwesome\Interfaces\Source;
 use TYPO3\CMS\Core\SingletonInterface;
 
 abstract class AbstractSource implements Source, SingletonInterface {
-    const URL = '';
+    protected const URL = '';
+    protected const VERSION = '6.2.1';
 
     /**
      * @param string $package

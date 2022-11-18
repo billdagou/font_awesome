@@ -22,7 +22,7 @@ class StackViewHelper extends AbstractTagBasedViewHelper {
     /**
      * @return string
      */
-    public function render() {
+    public function render(): string {
         $this->viewHelperVariableContainer->add(self::class, 'isStack', TRUE);
 
         $content = $this->renderChildren();
@@ -47,5 +47,7 @@ class StackViewHelper extends AbstractTagBasedViewHelper {
 
             return $this->tag->render();
         }
+
+        return '';
     }
 }

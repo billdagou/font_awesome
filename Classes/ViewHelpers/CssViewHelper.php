@@ -3,7 +3,6 @@ namespace Dagou\FontAwesome\ViewHelpers;
 
 use Dagou\FontAwesome\Interfaces\Framework;
 use Dagou\FontAwesome\Interfaces\Source;
-use Dagou\FontAwesome\Registry\FontAwesome;
 use Dagou\FontAwesome\Source\Local;
 use Dagou\FontAwesome\Traits\Package;
 use Dagou\FontAwesome\Utility\ExtensionUtility;
@@ -46,7 +45,7 @@ class CssViewHelper extends \TYPO3\CMS\Fluid\ViewHelpers\Asset\CssViewHelper {
 
             $this->arguments['identifier'] .= '.'.$this->arguments['package'];
 
-            GeneralUtility::makeInstance(FontAwesome::class)->set(Framework::FRAMEWORK_CSS, TRUE);
+            $GLOBALS['TSFE']->fe_user->setKey('ses', Framework::NAME, Framework::CSS);
 
             return parent::render();
         }
