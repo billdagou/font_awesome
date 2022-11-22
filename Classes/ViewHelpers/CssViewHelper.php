@@ -45,10 +45,10 @@ class CssViewHelper extends \TYPO3\CMS\Fluid\ViewHelpers\Asset\CssViewHelper {
 
             $this->arguments['identifier'] .= '.'.$this->arguments['package'];
 
-            $GLOBALS['TSFE']->fe_user->setKey('ses', Framework::NAME, Framework::CSS);
-
             return parent::render();
         }
+
+        $GLOBALS['TSFE']->fe_user->setKey('ses', Framework::NAME, Framework::CSS);
 
         return '';
     }

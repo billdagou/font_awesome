@@ -46,10 +46,10 @@ class JsViewHelper extends ScriptViewHelper {
 
             $this->arguments['identifier'] .= '.'.$this->arguments['package'];
 
-            $GLOBALS['TSFE']->fe_user->setKey('ses', Framework::NAME, Framework::JS);
-
             return parent::render();
         }
+
+        $GLOBALS['TSFE']->fe_user->setKey('ses', Framework::NAME, Framework::JS);
 
         return '';
     }
