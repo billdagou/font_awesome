@@ -30,6 +30,8 @@ class JsViewHelper extends ScriptViewHelper {
      * @return string
      */
     public function render(): string {
+        $GLOBALS['TSFE']->fe_user->setKey('ses', Framework::NAME, Framework::JS);
+
         if ($this->isValidPackage($this->arguments['package'])) {
             if (!$this->arguments['src']) {
                 if (!$this->arguments['disableSource']
@@ -48,8 +50,6 @@ class JsViewHelper extends ScriptViewHelper {
 
             return parent::render();
         }
-
-        $GLOBALS['TSFE']->fe_user->setKey('ses', Framework::NAME, Framework::JS);
 
         return '';
     }

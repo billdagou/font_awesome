@@ -9,6 +9,11 @@ use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
 class AbstractIconViewHelper extends AbstractViewHelper {
     use Icon, Processor, Style;
 
+    /**
+     * @var bool
+     */
+    protected $escapeOutput = FALSE;
+
     public function initializeArguments() {
         $this->registerArgument('sharp', 'boolean', 'Sharp icon or not');
         $this->registerArgument('icon', 'string', 'Mask icon name', TRUE);
@@ -24,8 +29,8 @@ class AbstractIconViewHelper extends AbstractViewHelper {
 
         $this->process($classes, $data, 'style', 'icon');
 
-        $this->viewHelperVariableContainer->add(static::class, 'mask', $classes);
-        $this->viewHelperVariableContainer->add(static::class, 'maskId', $this->arguments['id']);
+        $this->viewHelperVariableContainer->add(self::class, 'mask', $classes);
+        $this->viewHelperVariableContainer->add(self::class, 'maskId', $this->arguments['id']);
 
         $content = $this->renderChildren();
 

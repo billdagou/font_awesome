@@ -29,6 +29,8 @@ class CssViewHelper extends \TYPO3\CMS\Fluid\ViewHelpers\Asset\CssViewHelper {
      * @return string
      */
     public function render(): string {
+        $GLOBALS['TSFE']->fe_user->setKey('ses', Framework::NAME, Framework::CSS);
+
         if ($this->isValidPackage($this->arguments['package'])) {
             if (!$this->arguments['href']) {
                 if (!$this->arguments['disableSource']
@@ -47,8 +49,6 @@ class CssViewHelper extends \TYPO3\CMS\Fluid\ViewHelpers\Asset\CssViewHelper {
 
             return parent::render();
         }
-
-        $GLOBALS['TSFE']->fe_user->setKey('ses', Framework::NAME, Framework::CSS);
 
         return '';
     }
