@@ -2,11 +2,11 @@
 $EM_CONF[$_EXTKEY] = [
     'title' => 'Font Awesome',
     'description' => 'Font Awesome, https://fontawesome.com/',
-    'version' => '6.2.1',
+    'version' => '6.4.2',
     'category' => 'plugin',
     'constraints' => [
         'depends' => [
-            'typo3' => '11.5.0-11.5.99',
+            'typo3' => '12.4.0-12.4.99',
         ],
     ],
     'state' => 'stable',
