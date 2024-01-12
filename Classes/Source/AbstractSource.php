@@ -34,8 +34,21 @@ abstract class AbstractSource implements Source, SingletonInterface {
                 return 'regular.min.css';
             case 'light':
                 return 'light.min.css';
+            case 'thin':
+                return 'thin.min.css';
+            case 'duotone':
+                return 'duotone.min.css';
             case 'fontawesome':
                 return 'fontawesome.min.css';
+
+            case 'svg':
+                return 'svg-with-js.min.css';
+            case 'v4-font':
+                return 'v4-font-face.min.css';
+            case 'v4-shims':
+                return 'v4-shims.min.css';
+            case 'v5-font':
+                return 'v5-font-face.min.css';
         }
     }
 
@@ -65,8 +78,17 @@ abstract class AbstractSource implements Source, SingletonInterface {
                 return 'regular.min.js';
             case 'light':
                 return 'light.min.js';
+            case 'thin':
+                return 'thin.min.js';
+            case 'duotone':
+                return 'duotone.min.js';
             case 'fontawesome':
                 return 'fontawesome.min.js';
+
+            case 'conflict':
+                return 'conflict-detection.min.js';
+            case 'v4-shims':
+                return 'v4-shims.min.js';
         }
     }
 }

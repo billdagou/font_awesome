@@ -11,6 +11,7 @@ class Counter extends AbstractTagBasedViewHelper {
 
     public function initializeArguments() {
         parent::initializeArguments();
+
         $this->registerUniversalTagAttributes();
     }
 

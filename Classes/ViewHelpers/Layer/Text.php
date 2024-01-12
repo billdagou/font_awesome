@@ -17,14 +17,15 @@ class Text extends AbstractTagBasedViewHelper {
 
     public function initializeArguments() {
         parent::initializeArguments();
-        $this->registerArgument('inverse', 'boolean', 'Inversed color or not', FALSE, TRUE);
 
+        $this->registerArgument('inverse', 'boolean', 'Inversed color or not', FALSE, TRUE);
         $this->registerArgument('grow', 'int', 'Scale up', FALSE, 0);
         $this->registerArgument('shrink', 'int', 'Scale down', FALSE, 0);
         $this->registerArgument('up', 'int', 'Move up', FALSE, 0);
         $this->registerArgument('right', 'int', 'Move right', FALSE, 0);
         $this->registerArgument('down', 'int', 'Move down', FALSE, 0);
         $this->registerArgument('left', 'int', 'Move left', FALSE, 0);
+
         $this->registerUniversalTagAttributes();
     }
 

@@ -7,35 +7,25 @@ EXT:font_awesome allows you to use [Font Awesome](https://fontawesome.com/) in y
 ## How to use it
 You can load the `JS` or `CSS` library in your Fluid template.
 
-	<fa:js />
+    <f:asset.script identifier="font_awesome" src="{fa:uri.js()}" />
 
-    <fa:css />
+    <f:asset.css identifier="font_awesome" href="{fa:uri.css()}" />
 
-You can load some specific style package, like `brands`, `solid`, `regular`, or `light`.
+You can load some specific style package, like `brands`, `solid`, `regular`, `light`, `thin`, or `duotone`, or even `svg|v4-font|v4-shims|v5-font` for `CSS` and `conflict|v4-shims` for `JS`.
 
-    <fa:js package="fontawesome" />
-    <fa:js package="solid" />
-    
-    <fa:css package="fontawesome" />
-    <fa:css package="solid" />
+    {fa:uri.js(package: "...")}
 
-You can also load your own library.
-
-    <fa:js src="..." />
-    
-    <fa:css href="..." />
-
-For more options please refer to &lt;f:asset.css&gt; and &lt;f:asset.script&gt;.
+    {fa:uri.css(package: "...")}
 
 To use other FontAwesome source, you can register it in `ext_localconf.php` or `AdditionalConfiguration.php`.
 
     \Dagou\FontAwesome\Utility\ExtensionUtility::registerSource(\Vendor\Extension\Source::class);
 
-You may want to disable the other source and use the local one instead in some cases, for example saving page as PDF by [WKHtmlToPdf](https://wkhtmltopdf.org/).
+You may want to disable the source and use the local one instead in some cases, for example saving page as PDF by [WKHtmlToPdf](https://wkhtmltopdf.org/).
 
-    <fa:js disableSource="true" />
-    
-    <fa:css disableSource="true" />
+    {fa:uri.js(forceLocal: "true")}
+
+    {fa:uri.css(forceLocal: "true")}
 
 ## ViewHelper
 #### Icon (Solid, Regular, Light, Brand)
