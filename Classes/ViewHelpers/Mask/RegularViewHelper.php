@@ -3,6 +3,6 @@ namespace Dagou\FontAwesome\ViewHelpers\Mask;
 
 use Dagou\FontAwesome\Traits\Style\Regular;
 
-class RegularViewHelper extends AbstractIconViewHelper {
+final class RegularViewHelper extends AbstractMaskIconViewHelper {
     use Regular;
 }

@@ -1,8 +1,13 @@
 <?php
 namespace Dagou\FontAwesome\ViewHelpers\Mask;
 
-use Dagou\FontAwesome\Traits\Style\Brands;
+final class BrandsViewHelper extends AbstractMaskIconViewHelper {
+    protected array $families = [];
+    protected string $style = 'brands';
 
-class BrandsViewHelper extends AbstractIconViewHelper {
-    use Brands;
+    /**
+     * @return void
+     */
+    protected function processFamily(): void {
+    }
 }

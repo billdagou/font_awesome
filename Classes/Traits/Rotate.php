@@ -1,8 +1,11 @@
 <?php
 namespace Dagou\FontAwesome\Traits;
 
-use Dagou\FontAwesome\Interfaces\Framework;
+use Dagou\FontAwesome\Type\Framework;
 
+/**
+ * @see https://docs.fontawesome.com/web/style/rotate
+ */
 trait Rotate {
     protected array $rotates = [
         '90',
@@ -11,13 +14,22 @@ trait Rotate {
     ];
 
     /**
-     * @param array $classes
-     * @param array $data
+     * @return void
      */
-    protected function rotate(array &$classes, array &$data) {
-        if ($GLOBALS['TSFE']->fe_user->getKey('ses', Framework::NAME) === Framework::CSS) {
+    protected function registerRotateArguments(): void {
+        $this->registerArgument('rotate', 'string', 'Rotate icon');
+    }
+
+    /**
+     * @return void
+     */
+    protected function processRotate(): void {
+        if ($this->arguments['rotate'] && $this->framework === Framework::CSS) {
             if (in_array($this->arguments['rotate'], $this->rotates)) {
-                $classes[] = 'fa-rotate-'.$this->arguments['rotate'];
+                $this->classes[] = 'fa-rotate-'.$this->arguments['rotate'];
+            } elseif (is_numeric($this->arguments['rotate'])) {
+                $this->classes[] = 'fa-rotate-by';
+                $this->styles['--fa-rotate-angle'] = $this->arguments['rotate'].'deg';
             }
         }
     }

@@ -1,94 +1,132 @@
 <?php
 namespace Dagou\FontAwesome\Source;
 
-use Dagou\FontAwesome\Interfaces\Source;
 use TYPO3\CMS\Core\SingletonInterface;
 
-abstract class AbstractSource implements Source, SingletonInterface {
-    protected const URL = '';
-    protected const VERSION = '6.7.2';
+abstract class AbstractSource implements SourceInterface, SingletonInterface {
+    protected const string URL = '';
+    protected const string VERSION = '7.0.0';
 
     /**
-     * @param string $package
+     * @param string $pack
+     * @param string $family
+     * @param string $style
      *
      * @return string
      */
-    public function getCss(string $package): string {
-        return static::URL.'css/'.$this->getCssBuild($package);
+    public function getCss(string $pack, string $family, string $style): string {
+        return static::URL.'css/'
+            .match ($pack) {
+                'all', 'fontawesome', 'svg', 'svg-with-js', 'v4-font-face', 'v4-shims', 'v5-font-face' => $pack,
+                'core' => 'fontawesome',
+                'svg-js' => 'svg-with-js',
+                'v4-font' => 'v4-font-face',
+                'v5-font' => 'v5-font-face',
+                default => $this->getBuild($pack, $family, $style),
+            }
+            .'.min.css';
     }
 
     /**
-     * @param string $package
+     * @param string $pack
+     * @param string $family
+     * @param string $style
      *
      * @return string
      */
-    protected function getCssBuild(string $package): string {
-        switch ($package) {
-            case 'all':
-                return 'all.min.css';
+    public function getJs(string $pack, string $family, string $style): string {
+        return static::URL.'js/'
+            .match ($pack) {
+                'all', 'conflict-detection', 'fontawesome', 'v4-shims' => $pack,
+                'conflict' => 'conflict-detection',
+                'core' => 'fontawesome',
+                default => $this->getBuild($pack, $family, $style),
+            }
+            .'.min.js';
+    }
+
+    /**
+     * @param string $pack
+     * @param string $family
+     * @param string $style
+     *
+     * @return string
+     */
+    protected function getBuild(string $pack, string $family, string $style): string {
+        $array = [$style];
+
+        switch ($pack) {
+            case '':
+            case 'classic':
+                if ($family === 'duotone') {
+                    if ($style === 'solid') {
+                        $array = [$family];
+                    } else {
+                        array_unshift($array, $family);
+                    }
+                }
+
+                break;
+            case 'sharp':
+                if ($family === 'duotone') {
+                    array_unshift($array, $family);
+                }
+
+                array_unshift($array, $pack);
+
+                break;
             case 'brands':
-                return 'brands.min.css';
-            case 'solid':
-                return 'solid.min.css';
-            case 'regular':
-                return 'regular.min.css';
-            case 'light':
-                return 'light.min.css';
-            case 'thin':
-                return 'thin.min.css';
-            case 'duotone':
-                return 'duotone.min.css';
-            case 'fontawesome':
-                return 'fontawesome.min.css';
+                $array = [$pack];
 
-            case 'svg':
-                return 'svg-with-js.min.css';
-            case 'v4-font':
-                return 'v4-font-face.min.css';
-            case 'v4-shims':
-                return 'v4-shims.min.css';
-            case 'v5-font':
-                return 'v5-font-face.min.css';
-        }
-    }
+                break;
+            case 'chisel':
+                $array = [$pack, 'regular'];
 
-    /**
-     * @param string $package
-     *
-     * @return string
-     */
-    public function getJs(string $package): string {
-        return static::URL.'js/'.$this->getJsBuild($package);
-    }
+                break;
+            case 'etch':
+                $array = [$pack, 'solid'];
 
-    /**
-     * @param string $package
-     *
-     * @return string
-     */
-    protected function getJsBuild(string $package): string {
-        switch ($package) {
-            case 'all':
-                return 'all.min.js';
-            case 'brands':
-                return 'brands.min.js';
-            case 'solid':
-                return 'solid.min.js';
-            case 'regular':
-                return 'regular.min.js';
-            case 'light':
-                return 'light.min.js';
-            case 'thin':
-                return 'thin.min.js';
-            case 'duotone':
-                return 'duotone.min.js';
-            case 'fontawesome':
-                return 'fontawesome.min.js';
+                break;
+            case 'jelly':
+                $array = ['regular'];
 
-            case 'conflict':
-                return 'conflict-detection.min.js';
-            case 'v4-shims':
-                return 'v4-shims.min.js';
-        }
+                if (in_array($family, ['fill', 'duo'])) {
+                    array_unshift($array, $family);
+                }
+
+                array_unshift($array, $pack);
+
+                break;
+            case 'notdog':
+                $array = ['solid'];
+
+                if ($family === 'duo') {
+                    array_unshift($array, $family);
+                }
+
+                array_unshift($array, $pack);
+
+                break;
+            case 'slab':
+                $array = ['regular'];
+
+                if ($family === 'press') {
+                    array_unshift($array, $family);
+                }
+
+                array_unshift($array, $pack);
+
+                break;
+            case 'thumbprint':
+                $array = [$pack, 'light'];
+
+                break;
+            case 'whiteboard':
+                $array = [$pack, 'semibold'];
+
+                break;
+        };
+
+        return implode('-', $array);
     }
 }

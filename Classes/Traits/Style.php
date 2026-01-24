@@ -1,27 +1,14 @@
 <?php
 namespace Dagou\FontAwesome\Traits;
 
+/**
+ * @see https://docs.fontawesome.com/web/add-icons/how-to
+ */
 trait Style {
-    protected array $styles = [
-        'brands',
-        'duotone',
-        'light',
-        'regular',
-        'solid',
-        'thin',
-    ];
-
     /**
-     * @param array $classes
-     * @param array $data
+     * @return void
      */
-    protected function style(array &$classes, array &$data) {
-        if ($this->arguments['sharp']) {
-            $classes[] = 'fa-sharp';
-        }
-
-        if (in_array($this->style, $this->styles)) {
-            $classes[] = 'fa-'.$this->style;
-        }
+    protected function processStyle(): void {
+        $this->classes[] = 'fa-'.$this->style;
     }
 }

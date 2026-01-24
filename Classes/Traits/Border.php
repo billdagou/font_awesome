@@ -1,14 +1,23 @@
 <?php
 namespace Dagou\FontAwesome\Traits;
 
+/**
+ * @see https://docs.fontawesome.com/web/style/pull
+ */
 trait Border {
     /**
-     * @param array $classes
-     * @param array $data
+     * @return void
      */
-    protected function border(array &$classes, array &$data) {
-        if ($this->arguments['border']) {
-            $classes[] = 'fa-border';
+    protected function registerBorderArguments(): void {
+        $this->registerArgument('border', 'boolean', 'Icon border');
+    }
+
+    /**
+     * @return void
+     */
+    protected function processBorder(): void {
+        if ($this->arguments['border'] === TRUE) {
+            $this->classes[] = 'fa-border';
         }
     }
 }

@@ -1,6 +1,9 @@
 <?php
 namespace Dagou\FontAwesome\Traits;
 
+/**
+ * @see https://docs.fontawesome.com/web/style/size
+ */
 trait Size {
     protected array $sizes = [
         '2xs',
@@ -22,12 +25,18 @@ trait Size {
     ];
 
     /**
-     * @param array $classes
-     * @param array $data
+     * @return void
      */
-    protected function size(array &$classes, array &$data) {
+    protected function registerSizeArguments(): void {
+        $this->registerArgument('size', 'string', 'Icon size');
+    }
+
+    /**
+     * @return void
+     */
+    protected function processSize(): void {
         if (in_array($this->arguments['size'], $this->sizes)) {
-            $classes[] = 'fa-'.$this->arguments['size'];
+            $this->classes[] = 'fa-'.$this->arguments['size'];
         }
     }
 }

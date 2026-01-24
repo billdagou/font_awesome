@@ -1,40 +1,46 @@
 <?php
 namespace Dagou\FontAwesome\ViewHelpers;
 
-use Dagou\FontAwesome\Traits\Size;
-use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractTagBasedViewHelper;
-
-class ListViewHelper extends AbstractTagBasedViewHelper {
+/**
+ * @see https://docs.fontawesome.com/web/style/lists
+ */
+final class ListViewHelper extends AbstractFontAwesomeViewHelper {
     /**
      * @var string
      */
     protected $tagName = 'ul';
 
-    public function initializeArguments() {
+    protected array $classes = [
+        'fa-ul',
+    ];
+
+    /**
+     * @return void
+     */
+    public function initializeArguments(): void {
         parent::initializeArguments();
-        $this->registerUniversalTagAttributes();
+
+        $this->registerArgument('tag', 'string', 'Tag name');
+
+        $this->registerStylesArguments();
     }
 
     /**
      * @return string
      */
     public function render(): string {
-        $this->viewHelperVariableContainer->add(ListViewHelper::class, 'isList', TRUE);
+        $this->viewHelperVariableContainer->add(self::class, 'isList', TRUE);
 
         $content = $this->renderChildren();
 
-        $this->viewHelperVariableContainer->remove(ListViewHelper::class, 'isList');
+        $this->viewHelperVariableContainer->remove(self::class, 'isList');
 
         if ($content) {
-            $classes = [
-                'fa-ul',
-            ];
+            $this->processStyles();
 
-            if ($this->tag->getAttribute('class')) {
-                $classes[] = $this->tag->getAttribute('class');
+            if ($this->arguments['tag'] === 'ol') {
+                $this->tag->setTagName($this->arguments['tag']);
             }
-
-            $this->tag->addAttribute('class', implode(' ', $classes));
 
             $this->tag->setContent($content);
 

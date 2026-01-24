@@ -1,11 +1,13 @@
 <?php
 namespace Dagou\FontAwesome\Utility;
 
-class ExtensionUtility {
+final class ExtensionUtility {
     /**
      * @param string $sourceClassName
+     *
+     * @return void
      */
-    public static function registerSource(string $sourceClassName) {
+    public static function registerSource(string $sourceClassName): void {
         $GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['font_awesome']['Source'] = $sourceClassName;
     }
 

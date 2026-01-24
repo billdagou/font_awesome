@@ -3,6 +3,6 @@ namespace Dagou\FontAwesome\ViewHelpers;
 
 use Dagou\FontAwesome\Traits\Style\Light;
 
-class LightViewHelper extends AbstractIconViewHelper {
+final class LightViewHelper extends AbstractIconViewHelper {
     use Light;
 }

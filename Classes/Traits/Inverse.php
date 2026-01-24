@@ -3,12 +3,18 @@ namespace Dagou\FontAwesome\Traits;
 
 trait Inverse {
     /**
-     * @param array $classes
-     * @param array $data
+     * @return void
      */
-    protected function inverse(array &$classes, array &$data) {
-        if ($this->arguments['inverse']) {
-            $classes[] = 'fa-inverse';
+    protected function registerInverseArguments(): void {
+        $this->registerArgument('inverse', 'boolean', 'Inverse color');
+    }
+
+    /**
+     * @return void
+     */
+    protected function processInverse(): void {
+        if ($this->arguments['inverse'] === TRUE) {
+            $this->classes[] = 'fa-inverse';
         }
     }
 }

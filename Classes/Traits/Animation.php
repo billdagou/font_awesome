@@ -1,6 +1,9 @@
 <?php
 namespace Dagou\FontAwesome\Traits;
 
+/**
+ * @see https://docs.fontawesome.com/web/style/animate
+ */
 trait Animation {
     protected array $animations = [
         'beat',
@@ -11,20 +14,26 @@ trait Animation {
         'shake',
         'spin',
         'spin-pulse',
-        'spin-reverse',
     ];
 
     /**
-     * @param array $classes
-     * @param array $data
+     * @return void
      */
-    protected function animation(array &$classes, array &$data) {
-        if (in_array($this->arguments['animation'], $this->animations)) {
-            if ($this->arguments['animation'] === 'spin-reverse') {
-                $classes[] = 'fa-spin-pulse';
-            }
+    protected function registerAnimationArguments(): void {
+        $this->registerArgument('animation', 'string', 'Icon animation');
+        $this->registerArgument('spin-reverse', 'boolean', 'Spin counter-clockwise');
+    }
 
-            $classes[] = 'fa-'.$this->arguments['animation'];
+    /**
+     * @return void
+     */
+    protected function processAnimation(): void {
+        if (in_array($this->arguments['animation'], $this->animations)) {
+            $this->classes[] = 'fa-'.$this->arguments['animation'];
+
+            if ($this->arguments['spin-reverse'] === TRUE && in_array($this->arguments['animation'], ['spin', 'spin-pulse'])) {
+                $this->classes[] = 'fa-spin-reverse';
+            }
         }
     }
 }

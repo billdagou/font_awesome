@@ -3,6 +3,6 @@ namespace Dagou\FontAwesome\ViewHelpers\Mask;
 
 use Dagou\FontAwesome\Traits\Style\Solid;
 
-class SolidViewHelper extends AbstractIconViewHelper {
+final class SolidViewHelper extends AbstractMaskIconViewHelper {
     use Solid;
 }
