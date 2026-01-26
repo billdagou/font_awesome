@@ -28,6 +28,10 @@ You may want to disable the source and use the local one instead in some cases, 
 
     {fa:uri.css(forceLocal: "true")}
 
+## Features
+
+- `fa.fixedWidth`, If on, all Font Awesome icons on the web display at a fixed width which fills the entire Icon Canvas by default.
+
 ## ViewHelper
 
 #### Asset (Css, Js)
