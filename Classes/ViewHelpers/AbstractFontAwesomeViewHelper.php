@@ -11,7 +11,7 @@ use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractTagBasedViewHelper;
 abstract class AbstractFontAwesomeViewHelper extends AbstractTagBasedViewHelper {
     use ServerRequest;
 
-    protected Framework $framework;
+    protected ?Framework $framework = NULL;
     protected array $supportedStyles = [];
     protected array $classes = [];
     protected array $data = [];

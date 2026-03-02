@@ -28,9 +28,9 @@ final class FrameworkContext {
     }
 
     /**
-     * @return \Dagou\FontAwesome\Type\Framework
+     * @return \Dagou\FontAwesome\Type\Framework|null
      */
-    public function get(): Framework {
+    public function get(): ?Framework {
         return self::$framework ?? $this->request->getAttribute('frontend.user')->getKey('ses', $this->key);
     }
 }
