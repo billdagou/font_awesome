@@ -5,7 +5,7 @@ use TYPO3\CMS\Core\SingletonInterface;
 
 abstract class AbstractSource implements SourceInterface, SingletonInterface {
     protected const string URL = '';
-    protected const string VERSION = '7.0.0';
+    protected const string VERSION = '7.2.0';
 
     /**
      * @param string $pack
